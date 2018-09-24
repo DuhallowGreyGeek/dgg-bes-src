@@ -1,0 +1,11 @@
+C:\Users\user\Documents\BES_20180827\dgg-bes-src\BesSrc1\BesSrc1\bin\Debug\BesSrc1.exe.config
+C:\Users\user\Documents\BES_20180827\dgg-bes-src\BesSrc1\BesSrc1\obj\Debug\BesSrc1.Resources.resources
+C:\Users\user\Documents\BES_20180827\dgg-bes-src\BesSrc1\BesSrc1\obj\Debug\BesSrc1.vbproj.GenerateResource.Cache
+C:\Users\user\Documents\BES_20180827\dgg-bes-src\BesSrc1\BesSrc1\obj\Debug\BesSrc1.frmBesSrcSplash.resources
+C:\Users\user\Documents\BES_20180827\dgg-bes-src\BesSrc1\BesSrc1\bin\Debug\BesSrc1.exe
+C:\Users\user\Documents\BES_20180827\dgg-bes-src\BesSrc1\BesSrc1\bin\Debug\BesSrc1.pdb
+C:\Users\user\Documents\BES_20180827\dgg-bes-src\BesSrc1\BesSrc1\bin\Debug\BesSrc1.xml
+C:\Users\user\Documents\BES_20180827\dgg-bes-src\BesSrc1\BesSrc1\obj\Debug\BesSrc1.exe
+C:\Users\user\Documents\BES_20180827\dgg-bes-src\BesSrc1\BesSrc1\obj\Debug\BesSrc1.xml
+C:\Users\user\Documents\BES_20180827\dgg-bes-src\BesSrc1\BesSrc1\obj\Debug\BesSrc1.pdb
+C:\Users\user\Documents\BES_20180827\dgg-bes-src\BesSrc1\BesSrc1\obj\Debug\BesSrc1.frmBesSrcMain.resources
