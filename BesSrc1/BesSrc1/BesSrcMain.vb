@@ -6,8 +6,8 @@
     Sub main()
         'Shouldn't need to do this but splash screen option of Project doesn't seem to work properly
         'Probably means I'm not doing it right!
-        Dim frmSplash As New frmBesSrcSplash
-        frmSplash.ShowDialog()
+        'Dim frmSplash As New frmBesSrcSplash
+        'frmSplash.ShowDialog()
 
         'Show the Main screen
         frmMain.ShowDialog()
