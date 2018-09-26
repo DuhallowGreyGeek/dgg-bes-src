@@ -2,7 +2,8 @@
     'Start  point for the BesSrc application. Sets up things and launches the frmMain form.
 
     Public frmMain As New frmBesSrcMain
-    Public params As New BesParam
+    Public params As New BesParam                       'System parameters
+    Public srch As New DocSearch                   'Search functions
 
     Sub main()
         'Shouldn't need to do this but splash screen option of Project doesn't seem to work properly

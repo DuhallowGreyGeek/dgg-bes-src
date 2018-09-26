@@ -88,8 +88,10 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DocSearch.vb" />
     <Compile Include="BesParam.vb" />
     <Compile Include="BesSrcMain.vb" />
+    <Compile Include="DocumentRow.vb" />
     <Compile Include="frmBesSrcMain.Designer.vb">
       <DependentUpon>frmBesSrcMain.vb</DependentUpon>
     </Compile>

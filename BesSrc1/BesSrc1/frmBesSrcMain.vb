@@ -8,13 +8,21 @@
         'Else
         'Me.colDocId.Visible = True
         'End If
-        Dim rowid As Integer = Me.grdFoundDocs.Rows.Add()
-        Me.grdFoundDocs.Rows.Item(rowid).Cells.Item(0).Value = "Junk " & rowid.ToString
-        Me.grdFoundDocs.Rows.Item(rowid).Cells.Item(1).Value = "Garbage"
-        Me.grdFoundDocs.Rows.Item(rowid).Cells.Item(2).Value = "1900-12-31"
-        Me.grdFoundDocs.Rows.Item(rowid).Cells.Item(3).Value = "This is pretending to be the title"
+        
+        Me.grdFoundDocs.Rows.Clear()
+        If srch.ListDocumentRows.Count > 0 Then
+            MsgBox("there are document rows")
+            For Each DocumentRow As DocumentRow In srch.ListDocumentRows
+                Dim rowid As Integer = Me.grdFoundDocs.Rows.Add()
+                Me.grdFoundDocs.Rows.Item(rowid).Cells.Item(0).Value = DocumentRow.DocId
+                Me.grdFoundDocs.Rows.Item(rowid).Cells.Item(1).Value = DocumentRow.Label
+                Me.grdFoundDocs.Rows.Item(rowid).Cells.Item(2).Value = DocumentRow.DocDate.ToString
+                Me.grdFoundDocs.Rows.Item(rowid).Cells.Item(3).Value = DocumentRow.Title
 
-        Console.WriteLine(" --- RowId = ---> " & rowid.ToString)
+            Next
+        Else
+            MsgBox("there are no document rows")
+        End If
 
     End Sub
 
@@ -25,5 +33,9 @@
         Dim rowId As String = Me.grdFoundDocs.Rows.Item(e.RowIndex).Cells.Item(0).Value
 
         Call MsgBox(" Clicked in Row: " & rowId.ToString)
+    End Sub
+
+    Private Sub frmBesSrcMain_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Console.WriteLine(" --- Window Handle -----> " & Me.Handle.ToString)
     End Sub
 End Class
