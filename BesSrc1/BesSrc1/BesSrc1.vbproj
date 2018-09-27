@@ -88,6 +88,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BesIntSet.vb" />
     <Compile Include="DocSearch.vb" />
     <Compile Include="BesParam.vb" />
     <Compile Include="BesSrcMain.vb" />
