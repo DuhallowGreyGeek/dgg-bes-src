@@ -11,12 +11,12 @@
         
         Me.grdFoundDocs.Rows.Clear()
         If srch.ListDocumentRows.Count > 0 Then
-            MsgBox("there are document rows")
+            'MsgBox("there are document rows")
             For Each DocumentRow As DocumentRow In srch.ListDocumentRows
                 Dim rowid As Integer = Me.grdFoundDocs.Rows.Add()
                 Me.grdFoundDocs.Rows.Item(rowid).Cells.Item(0).Value = DocumentRow.DocId
                 Me.grdFoundDocs.Rows.Item(rowid).Cells.Item(1).Value = DocumentRow.Label
-                Me.grdFoundDocs.Rows.Item(rowid).Cells.Item(2).Value = DocumentRow.DocDate.ToString
+                Me.grdFoundDocs.Rows.Item(rowid).Cells.Item(2).Value = DocumentRow.DocDate.ToString("yyyy-MM-dd", Globalization.CultureInfo.InvariantCulture)
                 Me.grdFoundDocs.Rows.Item(rowid).Cells.Item(3).Value = DocumentRow.Title
 
             Next
