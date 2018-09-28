@@ -52,12 +52,24 @@
     End Sub
 
     Private Sub SafeScreenResize()
+
         If Me.WindowState <> FormWindowState.Minimized Then
+            'Deal with the Form as a whole
             If Me.Width > RIGHTPANELWIDTH Then
                 Me.vertSplit.SplitterDistance = Me.Width - RIGHTPANELWIDTH
             End If
 
             Me.horizSplit.SplitterDistance = TOPPANELHEIGHT
+
+            'Now deal with the DocTitle column in datagrid
+            Dim usedWidth As Integer
+            usedWidth = colDocDate.Width + colDocLabel.Width
+
+            If colDocId.Visible Then
+                usedWidth = usedWidth + colDocId.Width
+            End If
+
+            colDocTitle.Width = Me.Width - usedWidth
         End If
     End Sub
 
