@@ -1,5 +1,9 @@
 ﻿Public Class frmBesSrcMain
 
+    'Constants used to fix the size of panels when form resizes
+    Protected Friend Const RIGHTPANELWIDTH As Integer = 190
+    Protected Friend Const TOPPANELHEIGHT As Integer = 76
+
     Private Sub cmdSearch_Click(sender As Object, e As EventArgs) Handles cmdSearch.Click
         'Test code
         'This works well toggling the colDocId column
@@ -8,7 +12,7 @@
         'Else
         'Me.colDocId.Visible = True
         'End If
-        
+
         Me.grdFoundDocs.Rows.Clear()
         If srch.ListDocumentRows.Count > 0 Then
             'MsgBox("there are document rows")
@@ -36,6 +40,25 @@
     End Sub
 
     Private Sub frmBesSrcMain_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Console.WriteLine(" --- Window Handle -----> " & Me.Handle.ToString)
+        'Set the minimum height for the top panel
+        Me.horizSplit.Panel1MinSize = TOPPANELHEIGHT
+
+        Call Me.SafeScreenResize()
     End Sub
+
+    
+    Private Sub frmBesSrcMain_Resize(sender As Object, e As EventArgs) Handles Me.Resize
+        Call Me.SafeScreenResize()
+    End Sub
+
+    Private Sub SafeScreenResize()
+        If Me.WindowState <> FormWindowState.Minimized Then
+            If Me.Width > RIGHTPANELWIDTH Then
+                Me.vertSplit.SplitterDistance = Me.Width - RIGHTPANELWIDTH
+            End If
+
+            Me.horizSplit.SplitterDistance = TOPPANELHEIGHT
+        End If
+    End Sub
+
 End Class
