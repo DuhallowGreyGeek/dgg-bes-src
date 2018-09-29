@@ -36,9 +36,10 @@ Partial Class frmBesSrcMain
         Me.mnuMainMenu = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OptionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DocumentIdToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TestToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DocumentIdToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SearchArgsToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.horizSplit, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.horizSplit.Panel1.SuspendLayout()
         Me.horizSplit.Panel2.SuspendLayout()
@@ -117,7 +118,7 @@ Partial Class frmBesSrcMain
         Me.cmdSearch.Location = New System.Drawing.Point(31, 22)
         Me.cmdSearch.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cmdSearch.Name = "cmdSearch"
-        Me.cmdSearch.Size = New System.Drawing.Size(87, 35)
+        Me.cmdSearch.Size = New System.Drawing.Size(85, 35)
         Me.cmdSearch.TabIndex = 0
         Me.cmdSearch.Text = "Search"
         Me.cmdSearch.UseVisualStyleBackColor = True
@@ -157,7 +158,7 @@ Partial Class frmBesSrcMain
         '
         'mnuMainMenu
         '
-        Me.mnuMainMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.OptionsToolStripMenuItem, Me.TestToolStripMenuItem, Me.HelpToolStripMenuItem})
+        Me.mnuMainMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.OptionsToolStripMenuItem, Me.TestToolStripMenuItem, Me.HelpToolStripMenuItem, Me.SearchArgsToolStripMenuItem1})
         Me.mnuMainMenu.Location = New System.Drawing.Point(0, 0)
         Me.mnuMainMenu.Name = "mnuMainMenu"
         Me.mnuMainMenu.Size = New System.Drawing.Size(646, 24)
@@ -177,6 +178,14 @@ Partial Class frmBesSrcMain
         Me.OptionsToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
         Me.OptionsToolStripMenuItem.Text = "Options"
         '
+        'DocumentIdToolStripMenuItem
+        '
+        Me.DocumentIdToolStripMenuItem.Checked = True
+        Me.DocumentIdToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.DocumentIdToolStripMenuItem.Name = "DocumentIdToolStripMenuItem"
+        Me.DocumentIdToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
+        Me.DocumentIdToolStripMenuItem.Text = "Document Id visible"
+        '
         'TestToolStripMenuItem
         '
         Me.TestToolStripMenuItem.Name = "TestToolStripMenuItem"
@@ -189,13 +198,11 @@ Partial Class frmBesSrcMain
         Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
         Me.HelpToolStripMenuItem.Text = "Help"
         '
-        'DocumentIdToolStripMenuItem
+        'SearchArgsToolStripMenuItem1
         '
-        Me.DocumentIdToolStripMenuItem.Checked = True
-        Me.DocumentIdToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.DocumentIdToolStripMenuItem.Name = "DocumentIdToolStripMenuItem"
-        Me.DocumentIdToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
-        Me.DocumentIdToolStripMenuItem.Text = "Document Id visible"
+        Me.SearchArgsToolStripMenuItem1.Name = "SearchArgsToolStripMenuItem1"
+        Me.SearchArgsToolStripMenuItem1.Size = New System.Drawing.Size(78, 20)
+        Me.SearchArgsToolStripMenuItem1.Text = "SearchArgs"
         '
         'frmBesSrcMain
         '
@@ -243,4 +250,5 @@ Partial Class frmBesSrcMain
     Friend WithEvents TestToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents HelpToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents DocumentIdToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SearchArgsToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
 End Class

@@ -414,6 +414,44 @@ Public Class DocSearch
 
     End Function
 
+    Public Function ParsedSearchArgs(enteredString As String) As Collection
+        'Break whatever the user has entered into individual "words" which are returned as a collection
+        'The words are stripped of leading and trailing spaces and folded to lower case but are not otherwise interpretted. 
+        'return the results as a collection of strings
+        mRoutineName = "ParsedSearchArgs(enterdString As String)"
+
+        'The parser is simple but probably ineffient. It uses Microsoft written code, so it is probably as good
+        'as it is possible to get.
+
+        Dim argumentList As New Collection
+
+        'Define the characters which will be used to split the string into words
+
+        'Line ends will always cause a word-split. I'm not even sure if a user can enter these in a text-box
+        Const LINEEND As String = vbCr & vbCrLf
+        '
+        Dim splitChars As String = " " & LINEEND  'Really only spaces
+
+
+        'Do the actual split
+        Dim words = enteredString.Split(splitChars.ToCharArray, StringSplitOptions.RemoveEmptyEntries)
+
+        'Let the user enter pretty much anything. Even let them repeat themselves
+
+        For Each candidateWord In words
+        
+            Dim trimChars As String = " " 'Characters to remove from the beginning and end of the candidate
+
+            candidateWord = candidateWord.Trim(trimChars.ToCharArray)
+
+            If candidateWord.Length > 0 Then    'Skip any candidates which have become empty
+                argumentList.Add(candidateWord.ToLower)
+            End If
+        Next
+        Return argumentList
+
+    End Function
+
     Private Sub handleSQLException(ex As SqlException)
         Console.WriteLine("*** Error *** in Module: " & MODNAME)
         Console.WriteLine("*** Exception *** in routine: " & mRoutineName)

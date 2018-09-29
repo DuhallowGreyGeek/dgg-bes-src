@@ -89,4 +89,22 @@
 
         Call matchingDocs.Dump()
     End Sub
+
+    Private Sub SearchArgsToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles SearchArgsToolStripMenuItem1.Click
+        'Test code
+
+        Dim searchArguments As New Collection
+        searchArguments = srch.ParsedSearchArgs(txtSearchCriteria.Text.ToString)
+
+        Console.WriteLine("---- The user entered ----")
+        Console.WriteLine(Me.txtSearchCriteria.Text.ToString)
+        Console.WriteLine("     which breaks into: ")
+
+        For Each argument As String In searchArguments
+            Console.WriteLine("     -----> " & argument)
+        Next
+
+        Console.WriteLine(" ")
+
+    End Sub
 End Class
