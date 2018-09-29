@@ -84,8 +84,6 @@ Public Class DocSearch
 
     End Function
 
-    
-
     Public Function DocBatch_IsThereExisting(FileName As String) As Boolean
         'Return True if there is an existing row and False if there isn't
         'There is a unique index on DocBatch.Filename so there will only ever be zero or 1 rows
@@ -246,8 +244,6 @@ Public Class DocSearch
 
     End Function
 
-    
-
     Private Sub DocSynopsis_Insert(documentId As Integer, partNum As Integer, synopsis As String)
         'Insert the text into the DocSynopsis table
         mRoutineName = "DocSynopsis_Insert(...)"
@@ -296,9 +292,70 @@ Public Class DocSearch
 
     End Sub
 
+    Public Function DocsEqualArg(argument As String) As BesIntSet
+        'Get the DocumentIds of documents which contain the exact to the search argument
+        'return the results as a "set" of integers
+        mRoutineName = "DocsEqualArg(argument As String)"
+
+        Dim xDocsEqualArg As New BesIntSet                  'Defined empty
+        'practice safe computing
+        argument = argument.Trim.ToLower
+
+        Dim conString As New System.Data.SqlClient.SqlConnectionStringBuilder
+
+        'Get Connection string data
+        conString.DataSource = params.SQLDataSource
+        conString.IntegratedSecurity = params.SQLIntegratedSecurity
+        conString.InitialCatalog = params.SQLInitCatalogDB
+
+        Try
+            Using sqlConnection As New SqlConnection(conString.ConnectionString)
+
+                sqlConnection.Open()
+                Dim queryText As String = "SELECT DISTINCT "
+                queryText = queryText & " wu.DocumentId "
+                queryText = queryText & " FROM dbo.WordUsage as wu"
+                queryText = queryText & " WHERE wu.WordText = @argument"
+
+                Using sqlCommand As New SqlCommand(queryText, sqlConnection)
+
+                    'Now substitute the values into the command
+                    sqlCommand.Parameters.AddWithValue("@argument", argument)
+
+
+                    Using reader = sqlCommand.ExecuteReader()
+
+                        If reader.HasRows Then
+                            Console.WriteLine(" -- Document List --")
+
+                            Do While reader.Read
+
+                                Console.WriteLine("DocumentId    : " & reader.Item("DocumentId").ToString())
+                                Console.WriteLine()
+
+                                xDocsEqualArg.Add(reader.Item("DocumentId"))
+                            Loop
+                        End If
+                    End Using
+                End Using
+                sqlConnection.Close()
+            End Using
+
+        Catch ex As SqlException
+            Call Me.handleSQLException(ex)
+
+        Catch ex As Exception
+            Call Me.handleGeneralException(ex)
+
+        End Try
+
+        Return xDocsEqualArg
+
+    End Function
+
     Private Sub handleSQLException(ex As SqlException)
         Console.WriteLine("*** Error *** in Module: " & MODNAME)
-        Console.Writeline("*** Exception *** in routine: " & mRoutineName)
+        Console.WriteLine("*** Exception *** in routine: " & mRoutineName)
 
         Dim i As Integer = 0
         For i = 0 To ex.Errors.Count - 1

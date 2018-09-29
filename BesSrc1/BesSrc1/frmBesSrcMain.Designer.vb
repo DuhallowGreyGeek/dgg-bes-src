@@ -33,6 +33,12 @@ Partial Class frmBesSrcMain
         Me.colDocLabel = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colDocDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colDocTitle = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.mnuMainMenu = New System.Windows.Forms.MenuStrip()
+        Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OptionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TestToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DocumentIdToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.horizSplit, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.horizSplit.Panel1.SuspendLayout()
         Me.horizSplit.Panel2.SuspendLayout()
@@ -42,6 +48,7 @@ Partial Class frmBesSrcMain
         Me.vertSplit.Panel2.SuspendLayout()
         Me.vertSplit.SuspendLayout()
         CType(Me.grdFoundDocs, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.mnuMainMenu.SuspendLayout()
         Me.SuspendLayout()
         '
         'statStatusStrip
@@ -56,7 +63,7 @@ Partial Class frmBesSrcMain
         'horizSplit
         '
         Me.horizSplit.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.horizSplit.Location = New System.Drawing.Point(0, 0)
+        Me.horizSplit.Location = New System.Drawing.Point(0, 24)
         Me.horizSplit.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.horizSplit.Name = "horizSplit"
         Me.horizSplit.Orientation = System.Windows.Forms.Orientation.Horizontal
@@ -68,8 +75,8 @@ Partial Class frmBesSrcMain
         'horizSplit.Panel2
         '
         Me.horizSplit.Panel2.Controls.Add(Me.grdFoundDocs)
-        Me.horizSplit.Size = New System.Drawing.Size(646, 230)
-        Me.horizSplit.SplitterDistance = 74
+        Me.horizSplit.Size = New System.Drawing.Size(646, 206)
+        Me.horizSplit.SplitterDistance = 66
         Me.horizSplit.SplitterWidth = 6
         Me.horizSplit.TabIndex = 1
         '
@@ -87,7 +94,7 @@ Partial Class frmBesSrcMain
         'vertSplit.Panel2
         '
         Me.vertSplit.Panel2.Controls.Add(Me.cmdSearch)
-        Me.vertSplit.Size = New System.Drawing.Size(646, 74)
+        Me.vertSplit.Size = New System.Drawing.Size(646, 66)
         Me.vertSplit.SplitterDistance = 489
         Me.vertSplit.SplitterWidth = 6
         Me.vertSplit.TabIndex = 0
@@ -110,7 +117,7 @@ Partial Class frmBesSrcMain
         Me.cmdSearch.Location = New System.Drawing.Point(31, 22)
         Me.cmdSearch.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cmdSearch.Name = "cmdSearch"
-        Me.cmdSearch.Size = New System.Drawing.Size(91, 35)
+        Me.cmdSearch.Size = New System.Drawing.Size(87, 35)
         Me.cmdSearch.TabIndex = 0
         Me.cmdSearch.Text = "Search"
         Me.cmdSearch.UseVisualStyleBackColor = True
@@ -124,7 +131,7 @@ Partial Class frmBesSrcMain
         Me.grdFoundDocs.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grdFoundDocs.Location = New System.Drawing.Point(0, 0)
         Me.grdFoundDocs.Name = "grdFoundDocs"
-        Me.grdFoundDocs.Size = New System.Drawing.Size(646, 150)
+        Me.grdFoundDocs.Size = New System.Drawing.Size(646, 134)
         Me.grdFoundDocs.TabIndex = 0
         '
         'colDocId
@@ -148,6 +155,48 @@ Partial Class frmBesSrcMain
         Me.colDocTitle.Name = "colDocTitle"
         Me.colDocTitle.Width = 500
         '
+        'mnuMainMenu
+        '
+        Me.mnuMainMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.OptionsToolStripMenuItem, Me.TestToolStripMenuItem, Me.HelpToolStripMenuItem})
+        Me.mnuMainMenu.Location = New System.Drawing.Point(0, 0)
+        Me.mnuMainMenu.Name = "mnuMainMenu"
+        Me.mnuMainMenu.Size = New System.Drawing.Size(646, 24)
+        Me.mnuMainMenu.TabIndex = 2
+        Me.mnuMainMenu.Text = "MenuStrip1"
+        '
+        'FileToolStripMenuItem
+        '
+        Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
+        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
+        Me.FileToolStripMenuItem.Text = "File"
+        '
+        'OptionsToolStripMenuItem
+        '
+        Me.OptionsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DocumentIdToolStripMenuItem})
+        Me.OptionsToolStripMenuItem.Name = "OptionsToolStripMenuItem"
+        Me.OptionsToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
+        Me.OptionsToolStripMenuItem.Text = "Options"
+        '
+        'TestToolStripMenuItem
+        '
+        Me.TestToolStripMenuItem.Name = "TestToolStripMenuItem"
+        Me.TestToolStripMenuItem.Size = New System.Drawing.Size(40, 20)
+        Me.TestToolStripMenuItem.Text = "Test"
+        '
+        'HelpToolStripMenuItem
+        '
+        Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
+        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
+        Me.HelpToolStripMenuItem.Text = "Help"
+        '
+        'DocumentIdToolStripMenuItem
+        '
+        Me.DocumentIdToolStripMenuItem.Checked = True
+        Me.DocumentIdToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.DocumentIdToolStripMenuItem.Name = "DocumentIdToolStripMenuItem"
+        Me.DocumentIdToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
+        Me.DocumentIdToolStripMenuItem.Text = "Document Id visible"
+        '
         'frmBesSrcMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
@@ -155,8 +204,10 @@ Partial Class frmBesSrcMain
         Me.ClientSize = New System.Drawing.Size(646, 252)
         Me.Controls.Add(Me.horizSplit)
         Me.Controls.Add(Me.statStatusStrip)
+        Me.Controls.Add(Me.mnuMainMenu)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MainMenuStrip = Me.mnuMainMenu
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "frmBesSrcMain"
         Me.Text = "*** Form Text - temp title - Bessie Search ***"
@@ -170,6 +221,8 @@ Partial Class frmBesSrcMain
         CType(Me.vertSplit, System.ComponentModel.ISupportInitialize).EndInit()
         Me.vertSplit.ResumeLayout(False)
         CType(Me.grdFoundDocs, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.mnuMainMenu.ResumeLayout(False)
+        Me.mnuMainMenu.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -184,4 +237,10 @@ Partial Class frmBesSrcMain
     Friend WithEvents colDocLabel As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents colDocDate As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents colDocTitle As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents mnuMainMenu As System.Windows.Forms.MenuStrip
+    Friend WithEvents FileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents OptionsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents TestToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents HelpToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents DocumentIdToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

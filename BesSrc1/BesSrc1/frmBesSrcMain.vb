@@ -5,13 +5,6 @@
     Protected Friend Const TOPPANELHEIGHT As Integer = 76
 
     Private Sub cmdSearch_Click(sender As Object, e As EventArgs) Handles cmdSearch.Click
-        'Test code
-        'This works well toggling the colDocId column
-        'If Me.colDocId.Visible = True Then
-        'Me.colDocId.Visible = False
-        'Else
-        'Me.colDocId.Visible = True
-        'End If
 
         Me.grdFoundDocs.Rows.Clear()
         If srch.ListDocumentRows.Count > 0 Then
@@ -73,4 +66,26 @@
         End If
     End Sub
 
+    Private Sub DocumentIdToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DocumentIdToolStripMenuItem.Click
+        
+        If Me.colDocId.Visible = True Then
+            Me.colDocId.Visible = False
+            Me.DocumentIdToolStripMenuItem.Checked = False
+        Else
+            Me.colDocId.Visible = True
+            Me.DocumentIdToolStripMenuItem.Checked = True
+        End If
+
+        Call Me.SafeScreenResize()
+
+    End Sub
+
+    Private Sub TestToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TestToolStripMenuItem.Click
+        'Test code
+        Dim searchArgument As String = InputBox("Enter the search argument", "Search Argument", "")
+
+        Dim matchingDocs As BesIntSet = srch.DocsEqualArg(searchArgument)
+
+        Call matchingDocs.Dump()
+    End Sub
 End Class
