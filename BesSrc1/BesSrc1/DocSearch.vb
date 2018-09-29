@@ -353,6 +353,67 @@ Public Class DocSearch
 
     End Function
 
+    Public Function DocsLikeArg(argument As String) As BesIntSet
+        'Get the DocumentIds of documents which contain words which are a LIKE match to the search argument
+        'return the results as a "set" of integers
+        mRoutineName = "DocsLikeArg(argument As String)"
+
+        Dim xDocsLikeArg As New BesIntSet                  'Defined empty
+        'practice safe computing
+        argument = argument.Trim.ToLower
+
+        Dim conString As New System.Data.SqlClient.SqlConnectionStringBuilder
+
+        'Get Connection string data
+        conString.DataSource = params.SQLDataSource
+        conString.IntegratedSecurity = params.SQLIntegratedSecurity
+        conString.InitialCatalog = params.SQLInitCatalogDB
+
+        Try
+            Using sqlConnection As New SqlConnection(conString.ConnectionString)
+
+                sqlConnection.Open()
+                Dim queryText As String = "SELECT DISTINCT "
+                queryText = queryText & " wu.DocumentId "
+                queryText = queryText & " FROM dbo.WordUsage as wu"
+                queryText = queryText & " WHERE wu.WordText LIKE @argument"
+
+                Using sqlCommand As New SqlCommand(queryText, sqlConnection)
+
+                    'Now substitute the values into the command
+                    sqlCommand.Parameters.AddWithValue("@argument", argument)
+
+
+                    Using reader = sqlCommand.ExecuteReader()
+
+                        If reader.HasRows Then
+                            Console.WriteLine(" -- Document List --")
+
+                            Do While reader.Read
+
+                                Console.WriteLine("DocumentId    : " & reader.Item("DocumentId").ToString())
+                                Console.WriteLine()
+
+                                xDocsLikeArg.Add(reader.Item("DocumentId"))
+                            Loop
+                        End If
+                    End Using
+                End Using
+                sqlConnection.Close()
+            End Using
+
+        Catch ex As SqlException
+            Call Me.handleSQLException(ex)
+
+        Catch ex As Exception
+            Call Me.handleGeneralException(ex)
+
+        End Try
+
+        Return xDocsLikeArg
+
+    End Function
+
     Private Sub handleSQLException(ex As SqlException)
         Console.WriteLine("*** Error *** in Module: " & MODNAME)
         Console.WriteLine("*** Exception *** in routine: " & mRoutineName)

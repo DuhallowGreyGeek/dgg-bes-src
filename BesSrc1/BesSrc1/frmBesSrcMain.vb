@@ -84,7 +84,8 @@
         'Test code
         Dim searchArgument As String = InputBox("Enter the search argument", "Search Argument", "")
 
-        Dim matchingDocs As BesIntSet = srch.DocsEqualArg(searchArgument)
+        'Dim matchingDocs As BesIntSet = srch.DocsEqualArg(searchArgument)
+        Dim matchingDocs As BesIntSet = srch.DocsLikeArg(searchArgument)
 
         Call matchingDocs.Dump()
     End Sub
