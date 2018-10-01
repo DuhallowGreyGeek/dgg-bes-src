@@ -73,10 +73,60 @@ Public Class FoundDocs
     End Sub
 
     ReadOnly Property FoundDocIds As Collection
+        'Expose the list of DocumentIds
         Get
             Return mFoundDocIds
         End Get
     End Property
+
+    Public Sub Add(documentId As Integer)
+        'Insert the text into the FoundDocIds cache table
+        mRoutineName = "Add(...)"
+
+        'Console.WriteLine("--Cached DocumentId ---> " & documentId.ToString )
+
+        Dim conString As New System.Data.SqlClient.SqlConnectionStringBuilder
+
+        'Get Connection string data
+        conString.DataSource = params.SQLDataSource
+        conString.IntegratedSecurity = params.SQLIntegratedSecurity
+        conString.InitialCatalog = params.SQLInitCatalogDB
+        Dim sqlConnection As New System.Data.SqlClient.SqlConnection(conString.ConnectionString)
+
+        'Build the query command structure
+        Dim queryString As String = "INSERT INTO dbo.FoundDocIds ("
+        queryString = queryString & "DocumentID )"
+        queryString = queryString & " VALUES( "
+        queryString = queryString & " @DocumentID "
+        queryString = queryString & " )"
+        '*** Will need to add SessionId if I take that approach or change the name to the temporary table
+
+        'Console.WriteLine(queryString)
+
+        Dim sqlCommand = New SqlCommand(queryString, sqlConnection)
+
+        'Now substitute the values into the command
+        sqlCommand.Parameters.AddWithValue("@DocumentID", documentId)
+
+        'Console.WriteLine("--sqlCommand--> " & sqlCommand.CommandText)
+
+        Try
+            Dim numRows As Integer = 0
+
+            sqlCommand.Connection.Open()
+            Dim iRows As Integer = sqlCommand.ExecuteNonQuery()
+            'MsgBox("Number Synopsis rows inserted = " & iRows.ToString)
+
+            mFoundDocIds.Add(documentId)           'Add the value we have just 
+
+            sqlCommand.Connection.Close()
+
+        Catch ex As SqlException
+            Call Me.handleSQLException(ex)
+
+        End Try
+
+    End Sub
 
     Private Sub handleSQLException(ex As SqlException)
         Console.WriteLine("*** Error *** in Module: " & MODNAME)

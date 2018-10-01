@@ -122,4 +122,14 @@
         'Dump the cache of DocumentIds to the console
         Call fdocs.Dump()
     End Sub
+
+    Private Sub PopulateToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PopulateToolStripMenuItem.Click
+        Dim inputDocumentId As Integer
+        Dim inputString As String
+
+        inputString = InputBox("DocumentId: ", "Input Test DocumentId")
+        If inputString.Length > 0 And Integer.TryParse(inputString, inputDocumentId) Then
+            Call fdocs.Add(inputDocumentId)
+        End If
+    End Sub
 End Class

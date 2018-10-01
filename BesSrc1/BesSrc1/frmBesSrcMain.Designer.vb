@@ -122,7 +122,7 @@ Partial Class frmBesSrcMain
         Me.cmdSearch.Location = New System.Drawing.Point(31, 22)
         Me.cmdSearch.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cmdSearch.Name = "cmdSearch"
-        Me.cmdSearch.Size = New System.Drawing.Size(79, 35)
+        Me.cmdSearch.Size = New System.Drawing.Size(77, 35)
         Me.cmdSearch.TabIndex = 0
         Me.cmdSearch.Text = "Search"
         Me.cmdSearch.UseVisualStyleBackColor = True
