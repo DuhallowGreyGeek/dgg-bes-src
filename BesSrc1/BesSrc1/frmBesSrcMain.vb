@@ -54,12 +54,16 @@
     End Sub
 
     Private Sub grdFoundDocs_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles grdFoundDocs.CellContentClick
-        Dim column As Integer = e.ColumnIndex
-        Dim row As Integer = e.RowIndex
+        'Dim column As Integer = e.ColumnIndex
+        'Dim row As Integer = e.RowIndex
 
-        Dim rowId As String = Me.grdFoundDocs.Rows.Item(e.RowIndex).Cells.Item(0).Value
+        'Call MsgBox("--row--> " & e.RowIndex.ToString & "--col--> " & e.ColumnIndex.ToString)
+        If e.RowIndex >= 0 Then 'Avoid problem with user clicking on headings
 
-        Call MsgBox(" Clicked in Row: " & rowId.ToString)
+            Dim rowId As String = Me.grdFoundDocs.Rows.Item(e.RowIndex).Cells.Item(0).Value
+
+            Call MsgBox(" Clicked in Row: " & rowId.ToString)
+        End If
     End Sub
 
     Private Sub frmBesSrcMain_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -147,6 +151,7 @@
     End Sub
 
     Private Sub PopulateToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PopulateToolStripMenuItem.Click
+        'Test Code 
         Dim inputDocumentId As Integer
         Dim inputString As String
 
@@ -154,10 +159,6 @@
         If inputString.Length > 0 And Integer.TryParse(inputString, inputDocumentId) Then
             Call fdocs.Add(inputDocumentId)
         End If
-    End Sub
-
-    Private Sub SearchToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SearchToolStripMenuItem.Click
-        ' Moved to the search button
     End Sub
 
     Private Sub ConsoleVisibleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConsoleVisibleToolStripMenuItem.Click
@@ -172,6 +173,17 @@
         Else
             AllocConsole()
             Me.ConsoleVisibleToolStripMenuItem.Checked = True
+        End If
+    End Sub
+
+    Private Sub OpenDocumentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenDocumentToolStripMenuItem.Click
+        'Test Code 
+        Dim inputDocumentId As Integer
+        Dim inputString As String
+
+        inputString = InputBox("DocumentId: ", "Input DocumentId to open")
+        If inputString.Length > 0 And Integer.TryParse(inputString, inputDocumentId) Then
+            'Call fdocs.Add(inputDocumentId)
         End If
     End Sub
 End Class

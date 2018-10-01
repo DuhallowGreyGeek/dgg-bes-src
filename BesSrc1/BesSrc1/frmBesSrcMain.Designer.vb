@@ -38,6 +38,7 @@ Partial Class frmBesSrcMain
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OptionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DocumentIdToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ConsoleVisibleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TestToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SearchArgsToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -45,8 +46,7 @@ Partial Class frmBesSrcMain
         Me.ClearToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PopulateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DumpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SearchToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ConsoleVisibleToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OpenDocumentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.statStatusStrip.SuspendLayout()
         CType(Me.horizSplit, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.horizSplit.Panel1.SuspendLayout()
@@ -133,7 +133,7 @@ Partial Class frmBesSrcMain
         Me.cmdSearch.Location = New System.Drawing.Point(31, 22)
         Me.cmdSearch.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cmdSearch.Name = "cmdSearch"
-        Me.cmdSearch.Size = New System.Drawing.Size(71, 35)
+        Me.cmdSearch.Size = New System.Drawing.Size(67, 35)
         Me.cmdSearch.TabIndex = 1
         Me.cmdSearch.Text = "Search"
         Me.cmdSearch.UseVisualStyleBackColor = True
@@ -154,6 +154,7 @@ Partial Class frmBesSrcMain
         '
         Me.colDocId.HeaderText = "Doc Id:"
         Me.colDocId.Name = "colDocId"
+        Me.colDocId.ReadOnly = True
         '
         'colDocLabel
         '
@@ -201,6 +202,14 @@ Partial Class frmBesSrcMain
         Me.DocumentIdToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
         Me.DocumentIdToolStripMenuItem.Text = "Document Id visible"
         '
+        'ConsoleVisibleToolStripMenuItem
+        '
+        Me.ConsoleVisibleToolStripMenuItem.Checked = True
+        Me.ConsoleVisibleToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.ConsoleVisibleToolStripMenuItem.Name = "ConsoleVisibleToolStripMenuItem"
+        Me.ConsoleVisibleToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
+        Me.ConsoleVisibleToolStripMenuItem.Text = "Console visible"
+        '
         'TestToolStripMenuItem
         '
         Me.TestToolStripMenuItem.Name = "TestToolStripMenuItem"
@@ -221,7 +230,7 @@ Partial Class frmBesSrcMain
         '
         'CacheToolStripMenuItem
         '
-        Me.CacheToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ClearToolStripMenuItem, Me.PopulateToolStripMenuItem, Me.DumpToolStripMenuItem, Me.SearchToolStripMenuItem})
+        Me.CacheToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ClearToolStripMenuItem, Me.PopulateToolStripMenuItem, Me.DumpToolStripMenuItem, Me.OpenDocumentToolStripMenuItem})
         Me.CacheToolStripMenuItem.Name = "CacheToolStripMenuItem"
         Me.CacheToolStripMenuItem.Size = New System.Drawing.Size(52, 20)
         Me.CacheToolStripMenuItem.Text = "Cache"
@@ -229,34 +238,26 @@ Partial Class frmBesSrcMain
         'ClearToolStripMenuItem
         '
         Me.ClearToolStripMenuItem.Name = "ClearToolStripMenuItem"
-        Me.ClearToolStripMenuItem.Size = New System.Drawing.Size(121, 22)
+        Me.ClearToolStripMenuItem.Size = New System.Drawing.Size(162, 22)
         Me.ClearToolStripMenuItem.Text = "Clear"
         '
         'PopulateToolStripMenuItem
         '
         Me.PopulateToolStripMenuItem.Name = "PopulateToolStripMenuItem"
-        Me.PopulateToolStripMenuItem.Size = New System.Drawing.Size(121, 22)
+        Me.PopulateToolStripMenuItem.Size = New System.Drawing.Size(162, 22)
         Me.PopulateToolStripMenuItem.Text = "Populate"
         '
         'DumpToolStripMenuItem
         '
         Me.DumpToolStripMenuItem.Name = "DumpToolStripMenuItem"
-        Me.DumpToolStripMenuItem.Size = New System.Drawing.Size(121, 22)
+        Me.DumpToolStripMenuItem.Size = New System.Drawing.Size(162, 22)
         Me.DumpToolStripMenuItem.Text = "Dump"
         '
-        'SearchToolStripMenuItem
+        'OpenDocumentToolStripMenuItem
         '
-        Me.SearchToolStripMenuItem.Name = "SearchToolStripMenuItem"
-        Me.SearchToolStripMenuItem.Size = New System.Drawing.Size(121, 22)
-        Me.SearchToolStripMenuItem.Text = "Search"
-        '
-        'ConsoleVisibleToolStripMenuItem
-        '
-        Me.ConsoleVisibleToolStripMenuItem.Checked = True
-        Me.ConsoleVisibleToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.ConsoleVisibleToolStripMenuItem.Name = "ConsoleVisibleToolStripMenuItem"
-        Me.ConsoleVisibleToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
-        Me.ConsoleVisibleToolStripMenuItem.Text = "Console visible"
+        Me.OpenDocumentToolStripMenuItem.Name = "OpenDocumentToolStripMenuItem"
+        Me.OpenDocumentToolStripMenuItem.Size = New System.Drawing.Size(162, 22)
+        Me.OpenDocumentToolStripMenuItem.Text = "Open Document"
         '
         'frmBesSrcMain
         '
@@ -296,10 +297,6 @@ Partial Class frmBesSrcMain
     Friend WithEvents txtSearchCriteria As System.Windows.Forms.TextBox
     Friend WithEvents cmdSearch As System.Windows.Forms.Button
     Friend WithEvents grdFoundDocs As System.Windows.Forms.DataGridView
-    Friend WithEvents colDocId As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colDocLabel As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colDocDate As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colDocTitle As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents mnuMainMenu As System.Windows.Forms.MenuStrip
     Friend WithEvents FileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents OptionsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -311,7 +308,11 @@ Partial Class frmBesSrcMain
     Friend WithEvents ClearToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents PopulateToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents DumpToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents SearchToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents toolStripMessage As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents ConsoleVisibleToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents colDocId As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents colDocLabel As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents colDocDate As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents colDocTitle As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents OpenDocumentToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class
