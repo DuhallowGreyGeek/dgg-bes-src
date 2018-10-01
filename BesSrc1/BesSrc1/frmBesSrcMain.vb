@@ -1,4 +1,7 @@
 ﻿Public Class frmBesSrcMain
+    'Used to manage to console
+    Declare Function AllocConsole Lib "Kernel32" () As Int32
+    Declare Function FreeConsole Lib "Kernel32" () As Int32
 
     'Constants used to fix the size of panels when form resizes
     Protected Friend Const RIGHTPANELWIDTH As Integer = 190
@@ -45,8 +48,8 @@
             Me.toolStripMessage.Text = "Found no documents."
         End If
 
-            'Now set the focus back in the search criteria text box
-            Me.txtSearchCriteria.Focus()
+        'Now set the focus back in the search criteria text box
+        Me.txtSearchCriteria.Focus()
 
     End Sub
 
@@ -67,7 +70,7 @@
         Call Me.SafeScreenResize()
     End Sub
 
-    
+
     Private Sub frmBesSrcMain_Resize(sender As Object, e As EventArgs) Handles Me.Resize
         Call Me.SafeScreenResize()
     End Sub
@@ -95,7 +98,7 @@
     End Sub
 
     Private Sub DocumentIdToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DocumentIdToolStripMenuItem.Click
-        
+
         If Me.colDocId.Visible = True Then
             Me.colDocId.Visible = False
             Me.DocumentIdToolStripMenuItem.Checked = False
@@ -157,4 +160,18 @@
         ' Moved to the search button
     End Sub
 
+    Private Sub ConsoleVisibleToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConsoleVisibleToolStripMenuItem.Click
+        'Toggle the debug console on and off
+        'Uses functions declared at the top of the class
+        'Declare Function AllocConsole Lib "Kernel32" () As Int32
+        'Declare Function FreeConsole Lib "Kernel32" () As Int32
+
+        If Me.ConsoleVisibleToolStripMenuItem.Checked = True Then
+            FreeConsole()
+            Me.ConsoleVisibleToolStripMenuItem.Checked = False
+        Else
+            AllocConsole()
+            Me.ConsoleVisibleToolStripMenuItem.Checked = True
+        End If
+    End Sub
 End Class
