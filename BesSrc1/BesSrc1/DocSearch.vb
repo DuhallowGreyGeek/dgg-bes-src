@@ -3,6 +3,7 @@
 'Imports System.Data.Sql
 Imports System.Data.SqlClient
 'Imports System.Data.SqlTypes
+Imports System.Text.RegularExpressions
 
 Public Class DocSearch
     'Object bringing together the function Bessie uses to search for documents.
@@ -330,11 +331,11 @@ Public Class DocSearch
 
                             Do While reader.Read
 
-                                Console.WriteLine("DocumentId    : " & reader.Item("DocumentId").ToString())
-                                Console.WriteLine()
+                                'Console.WriteLine("Equal DocumentId    : " & reader.Item("DocumentId").ToString())
 
                                 xDocsEqualArg.Add(reader.Item("DocumentId"))
                             Loop
+                            'Console.WriteLine(" ")
                         End If
                     End Using
                 End Using
@@ -391,11 +392,11 @@ Public Class DocSearch
 
                             Do While reader.Read
 
-                                Console.WriteLine("DocumentId    : " & reader.Item("DocumentId").ToString())
-                                Console.WriteLine()
+                                'Console.WriteLine("Like DocumentId    : " & reader.Item("DocumentId").ToString())
 
                                 xDocsLikeArg.Add(reader.Item("DocumentId"))
                             Loop
+                            'Console.WriteLine(" ")
                         End If
                     End Using
                 End Using
@@ -420,7 +421,7 @@ Public Class DocSearch
         'return the results as a collection of strings
         mRoutineName = "ParsedSearchArgs(enterdString As String)"
 
-        'The parser is simple but probably ineffient. It uses Microsoft written code, so it is probably as good
+        'The parser is simple but probably inefficient. It uses Microsoft written code, so it is probably as good
         'as it is possible to get.
 
         Dim argumentList As New Collection
@@ -450,6 +451,44 @@ Public Class DocSearch
         Next
         Return argumentList
 
+    End Function
+
+    Public Function MatchingDocs(argumentList As Collection) As BesIntSet
+        'For each argument find the matching documents. Add the DocumentId of the document to the MatchingDocs set. 
+        mRoutineName = "MatchingDocs(argumentList As Collection)"
+
+        Const LIKEMARKERS As String = "%_[]"                'Presence of these characters indicates a "LIKE" parm
+        Dim xMatchingDocs As New BesIntSet                  'Set of the matching DocumentIds
+
+        'The set starts out empty. The first set of results has to be added into it.
+        Dim iRowCounter As Integer = 0                      'Intialise a iRowCounter
+        For Each argument As String In argumentList
+            iRowCounter = iRowCounter + 1
+
+            If argument.IndexOfAny(LIKEMARKERS) <> -1 Then        'The argument is for the "LIKE" case. -1 is the "not found"
+                If iRowCounter = 1 Then
+                    Dim curSetMatchingDocs As New BesIntSet
+                    curSetMatchingDocs = srch.DocsLikeArg(argument)
+
+                    xMatchingDocs = xMatchingDocs.Union(curSetMatchingDocs)
+                Else
+                    xMatchingDocs = xMatchingDocs.Intersection(srch.DocsLikeArg(argument))
+                End If
+
+            Else                                            'The argument is for the "equals" case
+                If iRowCounter = 1 Then
+                    Dim curSetMatchingDocs As New BesIntSet
+                    curSetMatchingDocs = srch.DocsEqualArg(argument)
+
+                    xMatchingDocs = xMatchingDocs.Union(curSetMatchingDocs)
+                Else
+                    xMatchingDocs = xMatchingDocs.Intersection(srch.DocsEqualArg(argument))
+                End If
+
+            End If
+        Next
+
+        Return xMatchingDocs
     End Function
 
     Private Sub handleSQLException(ex As SqlException)
