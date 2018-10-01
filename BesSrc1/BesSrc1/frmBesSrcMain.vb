@@ -117,4 +117,9 @@
         'Clear the cache of DocumentIds
         Call fdocs.Clear()
     End Sub
+
+    Private Sub DumpToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DumpToolStripMenuItem.Click
+        'Dump the cache of DocumentIds to the console
+        Call fdocs.Dump()
+    End Sub
 End Class

@@ -60,7 +60,16 @@ Public Class FoundDocs
 
         End Try
 
+    End Sub
 
+    Public Sub Dump()
+        'Dump the contents of the class to the console
+        Console.WriteLine("---- FoundDoc --- contains: " & mFoundDocIds.Count.ToString & " DocumentIds")
+
+        For Each documentId As Integer In mFoundDocIds
+            Console.WriteLine("    ----> " & documentId.ToString)
+        Next
+        Console.WriteLine(" ")
     End Sub
 
     ReadOnly Property FoundDocIds As Collection
