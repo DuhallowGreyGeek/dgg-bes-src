@@ -45,6 +45,8 @@ Partial Class frmBesSrcMain
         Me.PopulateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DumpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SearchToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.toolStripMessage = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.statStatusStrip.SuspendLayout()
         CType(Me.horizSplit, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.horizSplit.Panel1.SuspendLayout()
         Me.horizSplit.Panel2.SuspendLayout()
@@ -59,6 +61,7 @@ Partial Class frmBesSrcMain
         '
         'statStatusStrip
         '
+        Me.statStatusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.toolStripMessage})
         Me.statStatusStrip.Location = New System.Drawing.Point(0, 230)
         Me.statStatusStrip.Name = "statStatusStrip"
         Me.statStatusStrip.Padding = New System.Windows.Forms.Padding(2, 0, 21, 0)
@@ -123,8 +126,8 @@ Partial Class frmBesSrcMain
         Me.cmdSearch.Location = New System.Drawing.Point(31, 22)
         Me.cmdSearch.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cmdSearch.Name = "cmdSearch"
-        Me.cmdSearch.Size = New System.Drawing.Size(75, 35)
-        Me.cmdSearch.TabIndex = 0
+        Me.cmdSearch.Size = New System.Drawing.Size(73, 35)
+        Me.cmdSearch.TabIndex = 1
         Me.cmdSearch.Text = "Search"
         Me.cmdSearch.UseVisualStyleBackColor = True
         '
@@ -240,6 +243,12 @@ Partial Class frmBesSrcMain
         Me.SearchToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.SearchToolStripMenuItem.Text = "Search"
         '
+        'toolStripMessage
+        '
+        Me.toolStripMessage.Name = "toolStripMessage"
+        Me.toolStripMessage.Size = New System.Drawing.Size(120, 17)
+        Me.toolStripMessage.Text = "ToolStripStatusLabel1"
+        '
         'frmBesSrcMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
@@ -254,6 +263,8 @@ Partial Class frmBesSrcMain
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "frmBesSrcMain"
         Me.Text = "*** Form Text - temp title - Bessie Search ***"
+        Me.statStatusStrip.ResumeLayout(False)
+        Me.statStatusStrip.PerformLayout()
         Me.horizSplit.Panel1.ResumeLayout(False)
         Me.horizSplit.Panel2.ResumeLayout(False)
         CType(Me.horizSplit, System.ComponentModel.ISupportInitialize).EndInit()
@@ -292,4 +303,5 @@ Partial Class frmBesSrcMain
     Friend WithEvents PopulateToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents DumpToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SearchToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents toolStripMessage As System.Windows.Forms.ToolStripStatusLabel
 End Class

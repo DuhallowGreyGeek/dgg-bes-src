@@ -5,21 +5,48 @@
     Protected Friend Const TOPPANELHEIGHT As Integer = 76
 
     Private Sub cmdSearch_Click(sender As Object, e As EventArgs) Handles cmdSearch.Click
+        'The heart of Bessie! Displays the search results
+        Const MAXDOCSON As Boolean = True                                  'Ceiling on number of docs displayed
+        Const MAXDOCNUM As Integer = 999                                    'Ceiling num of docs
 
-        Me.grdFoundDocs.Rows.Clear()
-        If srch.ListDocumentRows.Count > 0 Then
-            'MsgBox("there are document rows")
-            For Each DocumentRow As DocumentRow In srch.ListDocumentRows
-                Dim rowid As Integer = Me.grdFoundDocs.Rows.Add()
-                Me.grdFoundDocs.Rows.Item(rowid).Cells.Item(0).Value = DocumentRow.DocId
-                Me.grdFoundDocs.Rows.Item(rowid).Cells.Item(1).Value = DocumentRow.Label
-                Me.grdFoundDocs.Rows.Item(rowid).Cells.Item(2).Value = DocumentRow.DocDate.ToString("yyyy-MM-dd", Globalization.CultureInfo.InvariantCulture)
-                Me.grdFoundDocs.Rows.Item(rowid).Cells.Item(3).Value = DocumentRow.Title
+        fdocs.Clear()                                                       'Clear the cache
+        Me.grdFoundDocs.Rows.Clear()                                        'Clear the FoundDocs grid
+        Me.toolStripMessage.Text = ""                                       'Clear the status message
 
-            Next
+        Dim searchArguments As New Collection                               'Parse the arguments
+        searchArguments = srch.ParsedSearchArgs(txtSearchCriteria.Text.ToString)
+
+        Dim matchedDocuments As New BesIntSet                               'Get the matching documents
+        matchedDocuments = srch.MatchingDocs(searchArguments)
+
+        'Add the matched documents to the cache
+        For Each documentId As Integer In matchedDocuments
+            fdocs.Add(documentId)
+        Next
+
+        If fdocs.FoundDocIds.Count > 0 Then
+            If MAXDOCSON And fdocs.FoundDocIds.Count > MAXDOCNUM Then       'Too many docs to display
+                Me.toolStripMessage.Text = "Found: " & srch.ListDocumentRows.Count.ToString & " which is more than the maximum of: " & MAXDOCNUM.ToString
+
+            Else
+
+                Me.toolStripMessage.Text = "Found: " & srch.ListDocumentRows.Count.ToString & " documents."
+
+                For Each DocumentRow As DocumentRow In srch.ListDocumentRows
+                    Dim rowid As Integer = Me.grdFoundDocs.Rows.Add()
+                    Me.grdFoundDocs.Rows.Item(rowid).Cells.Item(0).Value = DocumentRow.DocId
+                    Me.grdFoundDocs.Rows.Item(rowid).Cells.Item(1).Value = DocumentRow.Label
+                    Me.grdFoundDocs.Rows.Item(rowid).Cells.Item(2).Value = DocumentRow.DocDate.ToString("yyyy-MM-dd", Globalization.CultureInfo.InvariantCulture)
+                    Me.grdFoundDocs.Rows.Item(rowid).Cells.Item(3).Value = DocumentRow.Title
+
+                Next
+            End If
         Else
-            MsgBox("there are no document rows")
+            Me.toolStripMessage.Text = "Found no documents."
         End If
+
+            'Now set the focus back in the search criteria text box
+            Me.txtSearchCriteria.Focus()
 
     End Sub
 
@@ -35,6 +62,7 @@
     Private Sub frmBesSrcMain_Load(sender As Object, e As EventArgs) Handles Me.Load
         'Set the minimum height for the top panel
         Me.horizSplit.Panel1MinSize = TOPPANELHEIGHT
+        Me.toolStripMessage.Text = ""                                       'Clear the status message
 
         Call Me.SafeScreenResize()
     End Sub
@@ -101,14 +129,6 @@
 
         Call matchedDocuments.Dump()
 
-        'Console.WriteLine("---- The user entered ----")
-        'Console.WriteLine(Me.txtSearchCriteria.Text.ToString)
-        'Console.WriteLine("     which breaks into: ")
-
-        'For Each argument As String In searchArguments
-        'Console.WriteLine("     -----> " & argument)
-        'Next
-
         Console.WriteLine(" ")
 
     End Sub
@@ -134,37 +154,7 @@
     End Sub
 
     Private Sub SearchToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SearchToolStripMenuItem.Click
-        'Test code
-        fdocs.Clear()                                                       'Clear the cache
-        Me.grdFoundDocs.Rows.Clear()                                        'Clear the FoundDocs grid
-
-        Dim searchArguments As New Collection                               'Parse the arguments
-        searchArguments = srch.ParsedSearchArgs(txtSearchCriteria.Text.ToString)
-
-        Dim matchedDocuments As New BesIntSet                               'Get the matching documents
-        matchedDocuments = srch.MatchingDocs(searchArguments)
-
-        'Add the matched documents to the cache
-        For Each documentId As Integer In matchedDocuments
-            fdocs.Add(documentId)
-        Next
-
-        If fdocs.FoundDocIds.Count > 0 Then
-            If srch.ListDocumentRows.Count > 0 Then
-                'MsgBox("there are document rows")
-                For Each DocumentRow As DocumentRow In srch.ListDocumentRows
-                    Dim rowid As Integer = Me.grdFoundDocs.Rows.Add()
-                    Me.grdFoundDocs.Rows.Item(rowid).Cells.Item(0).Value = DocumentRow.DocId
-                    Me.grdFoundDocs.Rows.Item(rowid).Cells.Item(1).Value = DocumentRow.Label
-                    Me.grdFoundDocs.Rows.Item(rowid).Cells.Item(2).Value = DocumentRow.DocDate.ToString("yyyy-MM-dd", Globalization.CultureInfo.InvariantCulture)
-                    Me.grdFoundDocs.Rows.Item(rowid).Cells.Item(3).Value = DocumentRow.Title
-
-                Next
-            Else
-                MsgBox("there are no document rows")
-            End If
-        End If
-
+        ' Moved to the search button
     End Sub
 
 End Class

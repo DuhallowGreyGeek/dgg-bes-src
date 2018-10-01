@@ -49,15 +49,9 @@ Public Class DocSearch
                     Using reader = sqlCommand.ExecuteReader()
 
                         If reader.HasRows Then
-                            Console.WriteLine(" -- Document List --")
+                            'Console.WriteLine(" -- Document List --")
 
                             Do While reader.Read
-
-                                Console.WriteLine("DocumentId    : " & reader.Item("DocumentId").ToString())
-                                Console.WriteLine("DateOnDoc     : " & reader.Item("DateOnDoc").ToString())
-                                Console.WriteLine("DocumentLabel : " & reader.Item("DocumentLabel").ToString())
-                                Console.WriteLine("Title         : " & reader.Item("Title").ToString())
-                                Console.WriteLine()
 
                                 Dim documentRow As New DocumentRow
                                 documentRow.DocId = reader.Item("DocumentId")
@@ -327,7 +321,7 @@ Public Class DocSearch
                     Using reader = sqlCommand.ExecuteReader()
 
                         If reader.HasRows Then
-                            Console.WriteLine(" -- Document List --")
+                            'Console.WriteLine(" -- Document List --")
 
                             Do While reader.Read
 
@@ -388,7 +382,7 @@ Public Class DocSearch
                     Using reader = sqlCommand.ExecuteReader()
 
                         If reader.HasRows Then
-                            Console.WriteLine(" -- Document List --")
+                            'Console.WriteLine(" -- Document List --")
 
                             Do While reader.Read
 
