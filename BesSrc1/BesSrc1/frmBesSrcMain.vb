@@ -132,4 +132,39 @@
             Call fdocs.Add(inputDocumentId)
         End If
     End Sub
+
+    Private Sub SearchToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SearchToolStripMenuItem.Click
+        'Test code
+        fdocs.Clear()                                                       'Clear the cache
+        Me.grdFoundDocs.Rows.Clear()                                        'Clear the FoundDocs grid
+
+        Dim searchArguments As New Collection                               'Parse the arguments
+        searchArguments = srch.ParsedSearchArgs(txtSearchCriteria.Text.ToString)
+
+        Dim matchedDocuments As New BesIntSet                               'Get the matching documents
+        matchedDocuments = srch.MatchingDocs(searchArguments)
+
+        'Add the matched documents to the cache
+        For Each documentId As Integer In matchedDocuments
+            fdocs.Add(documentId)
+        Next
+
+        If fdocs.FoundDocIds.Count > 0 Then
+            If srch.ListDocumentRows.Count > 0 Then
+                'MsgBox("there are document rows")
+                For Each DocumentRow As DocumentRow In srch.ListDocumentRows
+                    Dim rowid As Integer = Me.grdFoundDocs.Rows.Add()
+                    Me.grdFoundDocs.Rows.Item(rowid).Cells.Item(0).Value = DocumentRow.DocId
+                    Me.grdFoundDocs.Rows.Item(rowid).Cells.Item(1).Value = DocumentRow.Label
+                    Me.grdFoundDocs.Rows.Item(rowid).Cells.Item(2).Value = DocumentRow.DocDate.ToString("yyyy-MM-dd", Globalization.CultureInfo.InvariantCulture)
+                    Me.grdFoundDocs.Rows.Item(rowid).Cells.Item(3).Value = DocumentRow.Title
+
+                Next
+            Else
+                MsgBox("there are no document rows")
+            End If
+        End If
+
+    End Sub
+
 End Class

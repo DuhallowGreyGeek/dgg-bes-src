@@ -44,6 +44,7 @@ Partial Class frmBesSrcMain
         Me.ClearToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PopulateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DumpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SearchToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.horizSplit, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.horizSplit.Panel1.SuspendLayout()
         Me.horizSplit.Panel2.SuspendLayout()
@@ -122,7 +123,7 @@ Partial Class frmBesSrcMain
         Me.cmdSearch.Location = New System.Drawing.Point(31, 22)
         Me.cmdSearch.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cmdSearch.Name = "cmdSearch"
-        Me.cmdSearch.Size = New System.Drawing.Size(77, 35)
+        Me.cmdSearch.Size = New System.Drawing.Size(75, 35)
         Me.cmdSearch.TabIndex = 0
         Me.cmdSearch.Text = "Search"
         Me.cmdSearch.UseVisualStyleBackColor = True
@@ -210,7 +211,7 @@ Partial Class frmBesSrcMain
         '
         'CacheToolStripMenuItem
         '
-        Me.CacheToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ClearToolStripMenuItem, Me.PopulateToolStripMenuItem, Me.DumpToolStripMenuItem})
+        Me.CacheToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ClearToolStripMenuItem, Me.PopulateToolStripMenuItem, Me.DumpToolStripMenuItem, Me.SearchToolStripMenuItem})
         Me.CacheToolStripMenuItem.Name = "CacheToolStripMenuItem"
         Me.CacheToolStripMenuItem.Size = New System.Drawing.Size(52, 20)
         Me.CacheToolStripMenuItem.Text = "Cache"
@@ -232,6 +233,12 @@ Partial Class frmBesSrcMain
         Me.DumpToolStripMenuItem.Name = "DumpToolStripMenuItem"
         Me.DumpToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.DumpToolStripMenuItem.Text = "Dump"
+        '
+        'SearchToolStripMenuItem
+        '
+        Me.SearchToolStripMenuItem.Name = "SearchToolStripMenuItem"
+        Me.SearchToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.SearchToolStripMenuItem.Text = "Search"
         '
         'frmBesSrcMain
         '
@@ -284,4 +291,5 @@ Partial Class frmBesSrcMain
     Friend WithEvents ClearToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents PopulateToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents DumpToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SearchToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class
