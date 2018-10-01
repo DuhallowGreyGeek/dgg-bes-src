@@ -113,4 +113,8 @@
 
     End Sub
 
+    Private Sub ClearToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClearToolStripMenuItem.Click
+        'Clear the cache of DocumentIds
+        Call fdocs.Clear()
+    End Sub
 End Class

@@ -40,6 +40,10 @@ Partial Class frmBesSrcMain
         Me.TestToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SearchArgsToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CacheToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ClearToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PopulateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DumpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.horizSplit, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.horizSplit.Panel1.SuspendLayout()
         Me.horizSplit.Panel2.SuspendLayout()
@@ -118,7 +122,7 @@ Partial Class frmBesSrcMain
         Me.cmdSearch.Location = New System.Drawing.Point(31, 22)
         Me.cmdSearch.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cmdSearch.Name = "cmdSearch"
-        Me.cmdSearch.Size = New System.Drawing.Size(83, 35)
+        Me.cmdSearch.Size = New System.Drawing.Size(81, 35)
         Me.cmdSearch.TabIndex = 0
         Me.cmdSearch.Text = "Search"
         Me.cmdSearch.UseVisualStyleBackColor = True
@@ -158,7 +162,7 @@ Partial Class frmBesSrcMain
         '
         'mnuMainMenu
         '
-        Me.mnuMainMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.OptionsToolStripMenuItem, Me.TestToolStripMenuItem, Me.HelpToolStripMenuItem, Me.SearchArgsToolStripMenuItem1})
+        Me.mnuMainMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.OptionsToolStripMenuItem, Me.TestToolStripMenuItem, Me.HelpToolStripMenuItem, Me.SearchArgsToolStripMenuItem1, Me.CacheToolStripMenuItem})
         Me.mnuMainMenu.Location = New System.Drawing.Point(0, 0)
         Me.mnuMainMenu.Name = "mnuMainMenu"
         Me.mnuMainMenu.Size = New System.Drawing.Size(646, 24)
@@ -203,6 +207,31 @@ Partial Class frmBesSrcMain
         Me.SearchArgsToolStripMenuItem1.Name = "SearchArgsToolStripMenuItem1"
         Me.SearchArgsToolStripMenuItem1.Size = New System.Drawing.Size(78, 20)
         Me.SearchArgsToolStripMenuItem1.Text = "SearchArgs"
+        '
+        'CacheToolStripMenuItem
+        '
+        Me.CacheToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ClearToolStripMenuItem, Me.PopulateToolStripMenuItem, Me.DumpToolStripMenuItem})
+        Me.CacheToolStripMenuItem.Name = "CacheToolStripMenuItem"
+        Me.CacheToolStripMenuItem.Size = New System.Drawing.Size(52, 20)
+        Me.CacheToolStripMenuItem.Text = "Cache"
+        '
+        'ClearToolStripMenuItem
+        '
+        Me.ClearToolStripMenuItem.Name = "ClearToolStripMenuItem"
+        Me.ClearToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ClearToolStripMenuItem.Text = "Clear"
+        '
+        'PopulateToolStripMenuItem
+        '
+        Me.PopulateToolStripMenuItem.Name = "PopulateToolStripMenuItem"
+        Me.PopulateToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.PopulateToolStripMenuItem.Text = "Populate"
+        '
+        'DumpToolStripMenuItem
+        '
+        Me.DumpToolStripMenuItem.Name = "DumpToolStripMenuItem"
+        Me.DumpToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.DumpToolStripMenuItem.Text = "Dump"
         '
         'frmBesSrcMain
         '
@@ -251,4 +280,8 @@ Partial Class frmBesSrcMain
     Friend WithEvents HelpToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents DocumentIdToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SearchArgsToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents CacheToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ClearToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents PopulateToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents DumpToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

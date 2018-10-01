@@ -3,7 +3,8 @@
 
     Public frmMain As New frmBesSrcMain
     Public params As New BesParam                       'System parameters
-    Public srch As New DocSearch                   'Search functions
+    Public srch As New DocSearch                        'Search functions
+    Public fdocs As New FoundDocs                       'Found Document Ids
 
     Sub main()
         'Shouldn't need to do this but splash screen option of Project doesn't seem to work properly
