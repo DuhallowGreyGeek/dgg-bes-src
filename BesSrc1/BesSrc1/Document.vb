@@ -16,6 +16,13 @@
         'Constructor - Accepts the identifier of the Document concerned.
         'Not finding something is a serious error.
         mDocumentId = DocumentId
+        '
+        'Add some dummy values
+        mDocumentLabel = "Dummy"
+        mDateOnDoc = Date.Now
+        mFileName = "DummyFileName.xyz"
+        mPath = "C:/This/That/Something/"
+        mTitle = "Dummy Title"
 
     End Sub
 
