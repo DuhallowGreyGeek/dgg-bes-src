@@ -130,10 +130,10 @@ Partial Class frmBesSrcMain
         '
         Me.cmdSearch.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cmdSearch.Location = New System.Drawing.Point(31, 22)
+        Me.cmdSearch.Location = New System.Drawing.Point(35, 21)
         Me.cmdSearch.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cmdSearch.Name = "cmdSearch"
-        Me.cmdSearch.Size = New System.Drawing.Size(67, 35)
+        Me.cmdSearch.Size = New System.Drawing.Size(75, 35)
         Me.cmdSearch.TabIndex = 1
         Me.cmdSearch.Text = "Search"
         Me.cmdSearch.UseVisualStyleBackColor = True

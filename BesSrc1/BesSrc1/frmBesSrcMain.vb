@@ -183,7 +183,10 @@
 
         inputString = InputBox("DocumentId: ", "Input DocumentId to open")
         If inputString.Length > 0 And Integer.TryParse(inputString, inputDocumentId) Then
-            'Call fdocs.Add(inputDocumentId)
+            Dim curDocument As New Document(inputDocumentId)    'Create a new Document from the database
+            '
+            Call curDocument.Dump()
+
         End If
     End Sub
 End Class

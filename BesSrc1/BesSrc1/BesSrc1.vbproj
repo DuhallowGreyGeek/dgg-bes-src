@@ -92,6 +92,7 @@
     <Compile Include="DocSearch.vb" />
     <Compile Include="BesParam.vb" />
     <Compile Include="BesSrcMain.vb" />
+    <Compile Include="Document.vb" />
     <Compile Include="DocumentRow.vb" />
     <Compile Include="FoundDocs.vb" />
     <Compile Include="frmBesSrcMain.Designer.vb">
