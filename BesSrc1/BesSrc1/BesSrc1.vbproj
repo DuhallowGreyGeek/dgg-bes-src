@@ -89,6 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BesIntSet.vb" />
+    <Compile Include="DocBatch.vb" />
     <Compile Include="DocPart.vb" />
     <Compile Include="DocSearch.vb" />
     <Compile Include="BesParam.vb" />

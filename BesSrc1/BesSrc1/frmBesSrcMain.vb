@@ -184,10 +184,12 @@
         inputString = InputBox("DocumentId: ", "Input DocumentId to open")
         If inputString.Length > 0 And Integer.TryParse(inputString, inputDocumentId) Then
             'Dim curDocument As New Document(inputDocumentId)    'Create a new Document from the database
-            Dim curPart As New DocPart(inputDocumentId, inputDocumentId)    'Create a new DocPart from the database
+            'Dim curPart As New DocPart(inputDocumentId, inputDocumentId)    'Create a new DocPart from the database
+            Dim curBatch As New DocBatch(inputDocumentId)    'Create a new DocBatch from the database
             '
             'Call curDocument.Dump()
-            Call curPart.Dump()
+            'Call curPart.Dump()
+            Call curBatch.Dump()
 
         End If
     End Sub
