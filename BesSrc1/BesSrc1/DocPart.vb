@@ -27,6 +27,12 @@
         mSynopsis_Stored = "Dummy Synopsis. Typical synopsis would be much longer than a few words."
     End Sub
 
+    ReadOnly Property PartNum As Integer
+        Get
+            Return mPartNum
+        End Get
+    End Property
+
     ReadOnly Property DocDate As Date
         Get
             Return mDocDate

@@ -11,6 +11,7 @@
     Private mFileName As String
     Private mPath As String
     Private mTitle As String
+    Private mDocPartCollection As New Collection
 
     Public Sub New(DocumentId As Integer)
         'Constructor - Accepts the identifier of the Document concerned.
@@ -23,6 +24,10 @@
         mFileName = "DummyFileName.xyz"
         mPath = "C:/This/That/Something/"
         mTitle = "Dummy Title"
+        '
+        'Now get the parts
+        Call Me.FetchDocParts()
+
 
     End Sub
 
@@ -56,6 +61,26 @@
         End Get
     End Property
 
+    Public ReadOnly Property Parts As Collection
+        Get
+            Return mDocPartCollection
+        End Get
+    End Property
+
+    Private Sub FetchDocParts()
+        'Get the Document Parts for this Document from the database
+        '*** This is dummy code for testing during development
+
+        Dim numParts As Integer = 3             'The number of dummy parts I'm going to generate
+        Dim partNum As Integer
+
+        For partNum = 1 To numParts
+            Dim thisPart As New DocPart(mDocumentId, partNum)
+            mDocPartCollection.Add(thisPart)
+        Next
+
+    End Sub
+
     Public Sub Dump()
         Console.WriteLine("--- Contents of the Document object ---- ")
         '
@@ -66,5 +91,16 @@
         Console.WriteLine("    ---- Path ------------> " & Me.Path)
         Console.WriteLine("    ---- Title -----------> " & Me.Title)
         Console.WriteLine(" ")
+        Console.WriteLine("  --- Now the Parts ---------------------")
+        For Each DocPart As DocPart In mDocPartCollection
+            Console.WriteLine("      -- PartNum ---> " & DocPart.PartNum.ToString)
+            Console.WriteLine("      -- DocDate ---> " & DocPart.DocDate.ToString)
+            Console.WriteLine("      -- DocFrom ---> " & DocPart.DocFrom)
+            Console.WriteLine("      -- DocTo -----> " & DocPart.DocTo)
+            Console.WriteLine("      -- Synopsis_Stored ---> " & DocPart.Synopsis_Stored)
+            Console.WriteLine("      -- Synopsis_Derived --> " & DocPart.Synopsis_Derived)
+            Console.WriteLine(" ")
+        Next
+
     End Sub
 End Class
