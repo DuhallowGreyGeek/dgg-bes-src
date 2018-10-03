@@ -62,7 +62,9 @@
 
             Dim rowId As String = Me.grdFoundDocs.Rows.Item(e.RowIndex).Cells.Item(0).Value
 
-            Call MsgBox(" Clicked in Row: " & rowId.ToString)
+            'Call MsgBox(" Clicked in Row: " & rowId.ToString)
+            Dim documentForm As New frmDocView(rowId)
+            Call documentForm.Show()
         End If
     End Sub
 
@@ -187,9 +189,14 @@
             'Dim curPart As New DocPart(inputDocumentId, inputDocumentId)    'Create a new DocPart from the database
             'Dim curBatch As New DocBatch(inputDocumentId)    'Create a new DocBatch from the database
             '
-            Call curDocument.Dump()
+            'Call curDocument.Dump()
             'Call curPart.Dump()
             'Call curBatch.Dump()
+
+            Dim documentForm As New frmDocView(inputDocumentId)
+
+            'documentForm.Text = "Grauniad: " & inputDocumentId.ToString
+            documentForm.Show()
 
         End If
     End Sub
