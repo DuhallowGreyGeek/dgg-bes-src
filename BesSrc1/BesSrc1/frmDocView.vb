@@ -1,5 +1,11 @@
 ﻿Public Class frmDocView
     Protected Friend PROPLABELWIDTH As Integer = 125 '250
+    '
+    'Indexes for the DocTabControl (Used when accessing the tabs thru the TabPages collection)
+    '**** Just to confuse, they can't have the same names as the tabs!
+    Protected Friend DOCHEDRTAB As Integer = 0
+    Protected Friend DPARTSTAB As Integer = 1
+    Protected Friend ORGDOCTAB As Integer = 2
 
     Public Sub New(ByVal DocumentId As Integer)
 
@@ -43,6 +49,25 @@
         Me.GrdDocProps.Rows.Item(iFpath).Cells.Item(LABCOL).Value = "File path"
         Me.GrdDocProps.Rows.Item(iFpath).Cells.Item(VALCOL).Value = curDocument.Path
         '
+        'Now move on to the "Parts" tab
+        If curDocument.Parts.Count > 0 Then
+            Me.ToolStripStatusLabel1.Text = curDocument.Parts.Count.ToString & " Parts found for this document."
+            Dim i As Integer = 0
+            Dim partnum As Integer = 0
+
+            For i = 0 To curDocument.Parts.Count - 1 'Zero based array
+                partnum = i + 1
+                Console.WriteLine(" ---PartNum---> " & partnum.ToString)
+                'Add the pages we need
+                Me.PartsTabCntrl.TabPages.Add("Part: " & partnum.ToString)
+
+            Next
+
+        Else    'This is unexpected - Set a message and disable the tab
+            Me.DocTabControl.TabPages.Item(DPARTSTAB).Enabled = False           '*** Disabling/Visible tab doesn't work!
+            '
+            Me.ToolStripStatusLabel1.Text = "No Parts found for this Document!"
+        End If
     End Sub
 
     Private Sub SafeScreenResize()

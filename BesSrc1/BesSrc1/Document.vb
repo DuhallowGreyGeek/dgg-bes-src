@@ -19,11 +19,11 @@
         mDocumentId = DocumentId
         '
         'Add some dummy values
-        mDocumentLabel = "Dummy"
+        mDocumentLabel = "Dummy" & DocumentId.ToString
         mDateOnDoc = Date.Now
         mFileName = "DummyFileName.xyz"
         mPath = "C:/This/That/Something/"
-        mTitle = "Dummy Title"
+        mTitle = "Dummy Title " & DocumentId.ToString & " " & DocumentId.ToString
         '
         'Now get the parts
         Call Me.FetchDocParts()
@@ -71,7 +71,7 @@
         'Get the Document Parts for this Document from the database
         '*** This is dummy code for testing during development
 
-        Dim numParts As Integer = 3             'The number of dummy parts I'm going to generate
+        Dim numParts As Integer = 3             'The number of dummy parts I'm going to generate (actually tested up to 999!)
         Dim partNum As Integer
 
         For partNum = 1 To numParts

@@ -23,7 +23,7 @@
         mDocDate = Now
         mDocFrom = "Dummy From"
         mDocTo = "Dummy To"
-        mSubject = "Dummy: This is what the document is really about."
+        mSubject = "Dummy: " & DocumentId.ToString & " " & PartNum.ToString & "This is what the document is really about."
         mSynopsis_Stored = "Dummy Synopsis. Typical synopsis would be much longer than a few words."
     End Sub
 
