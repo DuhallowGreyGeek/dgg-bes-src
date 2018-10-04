@@ -30,16 +30,20 @@ Partial Class frmDocView
         Me.colDocPropLabel = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colDocPropValue = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PartsTab = New System.Windows.Forms.TabPage()
-        Me.OrigDocTab = New System.Windows.Forms.TabPage()
         Me.PartsTabCntrl = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.PartPanel = New System.Windows.Forms.Panel()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.OrigDocTab = New System.Windows.Forms.TabPage()
         Me.ToolStrip1.SuspendLayout()
         Me.DocTabControl.SuspendLayout()
         Me.DocHdrTab.SuspendLayout()
         CType(Me.GrdDocProps, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PartsTab.SuspendLayout()
         Me.PartsTabCntrl.SuspendLayout()
+        Me.TabPage1.SuspendLayout()
+        Me.PartPanel.SuspendLayout()
         Me.SuspendLayout()
         '
         'ToolStrip1
@@ -121,17 +125,6 @@ Partial Class frmDocView
         Me.PartsTab.Text = "Parts"
         Me.PartsTab.UseVisualStyleBackColor = True
         '
-        'OrigDocTab
-        '
-        Me.OrigDocTab.Location = New System.Drawing.Point(4, 29)
-        Me.OrigDocTab.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.OrigDocTab.Name = "OrigDocTab"
-        Me.OrigDocTab.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.OrigDocTab.Size = New System.Drawing.Size(758, 299)
-        Me.OrigDocTab.TabIndex = 2
-        Me.OrigDocTab.Text = "Orig Text"
-        Me.OrigDocTab.UseVisualStyleBackColor = True
-        '
         'PartsTabCntrl
         '
         Me.PartsTabCntrl.Controls.Add(Me.TabPage1)
@@ -145,6 +138,7 @@ Partial Class frmDocView
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.PartPanel)
         Me.TabPage1.Location = New System.Drawing.Point(4, 29)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
@@ -152,6 +146,24 @@ Partial Class frmDocView
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "TabPage1"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'PartPanel
+        '
+        Me.PartPanel.Controls.Add(Me.Label1)
+        Me.PartPanel.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PartPanel.Location = New System.Drawing.Point(3, 3)
+        Me.PartPanel.Name = "PartPanel"
+        Me.PartPanel.Size = New System.Drawing.Size(736, 250)
+        Me.PartPanel.TabIndex = 0
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(85, 97)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(308, 20)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "The simplest thing that could possibly work"
         '
         'TabPage2
         '
@@ -162,6 +174,17 @@ Partial Class frmDocView
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "TabPage2"
         Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'OrigDocTab
+        '
+        Me.OrigDocTab.Location = New System.Drawing.Point(4, 29)
+        Me.OrigDocTab.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.OrigDocTab.Name = "OrigDocTab"
+        Me.OrigDocTab.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.OrigDocTab.Size = New System.Drawing.Size(758, 299)
+        Me.OrigDocTab.TabIndex = 2
+        Me.OrigDocTab.Text = "Orig Text"
+        Me.OrigDocTab.UseVisualStyleBackColor = True
         '
         'frmDocView
         '
@@ -181,6 +204,9 @@ Partial Class frmDocView
         CType(Me.GrdDocProps, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PartsTab.ResumeLayout(False)
         Me.PartsTabCntrl.ResumeLayout(False)
+        Me.TabPage1.ResumeLayout(False)
+        Me.PartPanel.ResumeLayout(False)
+        Me.PartPanel.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -197,4 +223,6 @@ Partial Class frmDocView
     Friend WithEvents PartsTabCntrl As System.Windows.Forms.TabControl
     Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
     Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
+    Friend WithEvents PartPanel As System.Windows.Forms.Panel
+    Friend WithEvents Label1 As System.Windows.Forms.Label
 End Class

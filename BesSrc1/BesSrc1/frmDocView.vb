@@ -55,13 +55,17 @@
             Dim i As Integer = 0
             Dim partnum As Integer = 0
 
+            Dim partTabText As String = ""
             For i = 0 To curDocument.Parts.Count - 1 'Zero based array
                 partnum = i + 1
                 Console.WriteLine(" ---PartNum---> " & partnum.ToString)
                 'Add the pages we need
-                Me.PartsTabCntrl.TabPages.Add("Part: " & partnum.ToString)
-
+                partTabText = "Part: " & partnum.ToString
+                Me.PartsTabCntrl.TabPages.Add(partTabText)
+                'Me.PartsTabCntrl.TabPages.Item(partTabText) = Me.PartsTabCntrl.TabPages.Item(0)
+                '*** We need an experiment! Going elsewhere!!
             Next
+            Me.PartsTabCntrl.TabPages.Remove(Me.PartsTabCntrl.TabPages.Item(0))
 
         Else    'This is unexpected - Set a message and disable the tab
             Me.DocTabControl.TabPages.Item(DPARTSTAB).Enabled = False           '*** Disabling/Visible tab doesn't work!
@@ -89,4 +93,5 @@
     Private Sub frmDocView_Resize(sender As Object, e As EventArgs) Handles Me.Resize
         Call Me.SafeScreenResize()
     End Sub
+
 End Class
