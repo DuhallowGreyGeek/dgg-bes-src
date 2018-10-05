@@ -22,6 +22,7 @@ Partial Class frmDocView
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmDocView))
         Me.ToolStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.DocTabControl = New System.Windows.Forms.TabControl()
@@ -36,6 +37,7 @@ Partial Class frmDocView
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.OrigDocTab = New System.Windows.Forms.TabPage()
+        Me.pdfViewer = New AxAcroPDFLib.AxAcroPDF()
         Me.ToolStrip1.SuspendLayout()
         Me.DocTabControl.SuspendLayout()
         Me.DocHdrTab.SuspendLayout()
@@ -44,6 +46,8 @@ Partial Class frmDocView
         Me.PartsTabCntrl.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.PartPanel.SuspendLayout()
+        Me.OrigDocTab.SuspendLayout()
+        CType(Me.pdfViewer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ToolStrip1
@@ -177,6 +181,7 @@ Partial Class frmDocView
         '
         'OrigDocTab
         '
+        Me.OrigDocTab.Controls.Add(Me.pdfViewer)
         Me.OrigDocTab.Location = New System.Drawing.Point(4, 29)
         Me.OrigDocTab.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.OrigDocTab.Name = "OrigDocTab"
@@ -185,6 +190,16 @@ Partial Class frmDocView
         Me.OrigDocTab.TabIndex = 2
         Me.OrigDocTab.Text = "Orig Text"
         Me.OrigDocTab.UseVisualStyleBackColor = True
+        '
+        'pdfViewer
+        '
+        Me.pdfViewer.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pdfViewer.Enabled = True
+        Me.pdfViewer.Location = New System.Drawing.Point(4, 5)
+        Me.pdfViewer.Name = "pdfViewer"
+        Me.pdfViewer.OcxState = CType(resources.GetObject("pdfViewer.OcxState"), System.Windows.Forms.AxHost.State)
+        Me.pdfViewer.Size = New System.Drawing.Size(750, 289)
+        Me.pdfViewer.TabIndex = 0
         '
         'frmDocView
         '
@@ -207,6 +222,8 @@ Partial Class frmDocView
         Me.TabPage1.ResumeLayout(False)
         Me.PartPanel.ResumeLayout(False)
         Me.PartPanel.PerformLayout()
+        Me.OrigDocTab.ResumeLayout(False)
+        CType(Me.pdfViewer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -225,4 +242,5 @@ Partial Class frmDocView
     Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
     Friend WithEvents PartPanel As System.Windows.Forms.Panel
     Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents pdfViewer As AxAcroPDFLib.AxAcroPDF
 End Class

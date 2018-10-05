@@ -11,3 +11,8 @@ C:\Users\user\Documents\BES_20180827\dgg-bes-src\BesSrc1\BesSrc1\obj\Debug\BesSr
 C:\Users\user\Documents\BES_20180827\dgg-bes-src\BesSrc1\BesSrc1\obj\Debug\BesSrc1.frmBesSrcMain.resources
 C:\Users\user\Documents\BES_20180827\dgg-bes-src\BesSrc1\BesSrc1\bin\Debug\BesParms.xml
 C:\Users\user\Documents\BES_20180827\dgg-bes-src\BesSrc1\BesSrc1\obj\Debug\BesSrc1.frmDocView.resources
+C:\Users\user\Documents\BES_20180827\dgg-bes-src\BesSrc1\BesSrc1\bin\Debug\Interop.AcroPDFLib.dll
+C:\Users\user\Documents\BES_20180827\dgg-bes-src\BesSrc1\BesSrc1\bin\Debug\AxInterop.AcroPDFLib.dll
+C:\Users\user\Documents\BES_20180827\dgg-bes-src\BesSrc1\BesSrc1\obj\Debug\Interop.AcroPDFLib.dll
+C:\Users\user\Documents\BES_20180827\dgg-bes-src\BesSrc1\BesSrc1\obj\Debug\AxInterop.AcroPDFLib.dll
+C:\Users\user\Documents\BES_20180827\dgg-bes-src\BesSrc1\BesSrc1\obj\Debug\BesSrc1.vbproj.ResolveComReference.cache

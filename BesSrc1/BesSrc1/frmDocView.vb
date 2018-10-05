@@ -72,6 +72,10 @@
             '
             Me.ToolStripStatusLabel1.Text = "No Parts found for this Document!"
         End If
+
+        'Now display the pdf
+        Me.pdfViewer.LoadFile("C:\Users\user\Desktop\Arkema.pdf")
+        Me.pdfViewer.src = "file:///C:/Users/user/Desktop/Arkema.pdf"
     End Sub
 
     Private Sub SafeScreenResize()
