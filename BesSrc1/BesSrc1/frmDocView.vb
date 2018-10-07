@@ -7,6 +7,8 @@
     Protected Friend DPARTSTAB As Integer = 1
     Protected Friend ORGDOCTAB As Integer = 2
 
+    Dim myPVCol As New PartViewCollection(Me)
+
     Public Sub New(ByVal DocumentId As Integer)
 
         ' This call is required by the designer.
@@ -58,14 +60,26 @@
             Dim partTabText As String = ""
             For i = 0 To curDocument.Parts.Count - 1 'Zero based array
                 partnum = i + 1
-                Console.WriteLine(" ---PartNum---> " & partnum.ToString)
-                'Add the pages we need
+                '
+                'Add the "part" pages we need
                 partTabText = "Part: " & partnum.ToString
-                Me.PartsTabCntrl.TabPages.Add(partTabText)
-                'Me.PartsTabCntrl.TabPages.Item(partTabText) = Me.PartsTabCntrl.TabPages.Item(0)
-                '*** We need an experiment! Going elsewhere!!
+                Me.PartsTabCntrl.TabPages.Add(partTabText)      'Add the new TabPage
+                myPVCol.AddNewPartView()                        'Add the new PartView
+                Me.PartsTabCntrl.TabPages(i).Controls.Add(myPVCol(i)) 'Add the PartView to the controls of the TabPage
+                '
+                'Set the properties of the Part
+                With myPVCol(i)
+                    .Dock = DockStyle.Fill
+                    '
+                    .PartNum = partnum.ToString
+                    .DocSubject = "Subject - " & partnum.ToString & " " & partnum.ToString
+                    .DocDate = "Date! " & partnum.ToString & " " & partnum.ToString
+                    .DocFrom = "Somebody"
+                    .DocTo = "Somebody else"
+                    .Synopsis_Stored = partnum.ToString & " She sells sea shells by the sea shore."
+                    .Synopsis_Derived = "Peter Piper picked a peck of pickled pepper."
+                End With
             Next
-            Me.PartsTabCntrl.TabPages.Remove(Me.PartsTabCntrl.TabPages.Item(0))
 
         Else    'This is unexpected - Set a message and disable the tab
             Me.DocTabControl.TabPages.Item(DPARTSTAB).Enabled = False           '*** Disabling/Visible tab doesn't work!
@@ -74,8 +88,8 @@
         End If
 
         'Now display the pdf
-        Me.pdfViewer.LoadFile("C:\Users\user\Desktop\Arkema.pdf")
-        Me.pdfViewer.src = "file:///C:/Users/user/Desktop/Arkema.pdf"
+        'Me.pdfViewer.LoadFile("C:\Users\user\Desktop\Arkema.pdf")
+        'Me.pdfViewer.src = "file:///C:/Users/user/Desktop/Arkema.pdf"
     End Sub
 
     Private Sub SafeScreenResize()

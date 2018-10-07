@@ -22,7 +22,6 @@ Partial Class frmDocView
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmDocView))
         Me.ToolStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.DocTabControl = New System.Windows.Forms.TabControl()
@@ -30,24 +29,17 @@ Partial Class frmDocView
         Me.GrdDocProps = New System.Windows.Forms.DataGridView()
         Me.colDocPropLabel = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colDocPropValue = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PartsTab = New System.Windows.Forms.TabPage()
         Me.PartsTabCntrl = New System.Windows.Forms.TabControl()
+        Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.PartPanel = New System.Windows.Forms.Panel()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.OrigDocTab = New System.Windows.Forms.TabPage()
-        Me.pdfViewer = New AxAcroPDFLib.AxAcroPDF()
+        Me.PartsTab = New System.Windows.Forms.TabPage()
         Me.ToolStrip1.SuspendLayout()
         Me.DocTabControl.SuspendLayout()
         Me.DocHdrTab.SuspendLayout()
         CType(Me.GrdDocProps, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PartsTab.SuspendLayout()
-        Me.PartsTabCntrl.SuspendLayout()
-        Me.TabPage1.SuspendLayout()
-        Me.PartPanel.SuspendLayout()
-        Me.OrigDocTab.SuspendLayout()
-        CType(Me.pdfViewer, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ToolStrip1
@@ -70,7 +62,6 @@ Partial Class frmDocView
         '
         Me.DocTabControl.Controls.Add(Me.DocHdrTab)
         Me.DocTabControl.Controls.Add(Me.PartsTab)
-        Me.DocTabControl.Controls.Add(Me.OrigDocTab)
         Me.DocTabControl.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DocTabControl.Location = New System.Drawing.Point(0, 0)
         Me.DocTabControl.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
@@ -117,22 +108,8 @@ Partial Class frmDocView
         Me.colDocPropValue.Name = "colDocPropValue"
         Me.colDocPropValue.ReadOnly = True
         '
-        'PartsTab
-        '
-        Me.PartsTab.Controls.Add(Me.PartsTabCntrl)
-        Me.PartsTab.Location = New System.Drawing.Point(4, 29)
-        Me.PartsTab.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.PartsTab.Name = "PartsTab"
-        Me.PartsTab.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.PartsTab.Size = New System.Drawing.Size(758, 299)
-        Me.PartsTab.TabIndex = 1
-        Me.PartsTab.Text = "Parts"
-        Me.PartsTab.UseVisualStyleBackColor = True
-        '
         'PartsTabCntrl
         '
-        Me.PartsTabCntrl.Controls.Add(Me.TabPage1)
-        Me.PartsTabCntrl.Controls.Add(Me.TabPage2)
         Me.PartsTabCntrl.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PartsTabCntrl.Location = New System.Drawing.Point(4, 5)
         Me.PartsTabCntrl.Name = "PartsTabCntrl"
@@ -140,9 +117,18 @@ Partial Class frmDocView
         Me.PartsTabCntrl.Size = New System.Drawing.Size(750, 289)
         Me.PartsTabCntrl.TabIndex = 0
         '
+        'TabPage2
+        '
+        Me.TabPage2.Location = New System.Drawing.Point(4, 29)
+        Me.TabPage2.Name = "TabPage2"
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage2.Size = New System.Drawing.Size(742, 256)
+        Me.TabPage2.TabIndex = 1
+        Me.TabPage2.Text = "TabPage2"
+        Me.TabPage2.UseVisualStyleBackColor = True
+        '
         'TabPage1
         '
-        Me.TabPage1.Controls.Add(Me.PartPanel)
         Me.TabPage1.Location = New System.Drawing.Point(4, 29)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
@@ -153,7 +139,6 @@ Partial Class frmDocView
         '
         'PartPanel
         '
-        Me.PartPanel.Controls.Add(Me.Label1)
         Me.PartPanel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PartPanel.Location = New System.Drawing.Point(3, 3)
         Me.PartPanel.Name = "PartPanel"
@@ -167,39 +152,18 @@ Partial Class frmDocView
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(308, 20)
         Me.Label1.TabIndex = 0
-        Me.Label1.Text = "The simplest thing that could possibly work"
         '
-        'TabPage2
+        'PartsTab
         '
-        Me.TabPage2.Location = New System.Drawing.Point(4, 29)
-        Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(742, 256)
-        Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "TabPage2"
-        Me.TabPage2.UseVisualStyleBackColor = True
-        '
-        'OrigDocTab
-        '
-        Me.OrigDocTab.Controls.Add(Me.pdfViewer)
-        Me.OrigDocTab.Location = New System.Drawing.Point(4, 29)
-        Me.OrigDocTab.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.OrigDocTab.Name = "OrigDocTab"
-        Me.OrigDocTab.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.OrigDocTab.Size = New System.Drawing.Size(758, 299)
-        Me.OrigDocTab.TabIndex = 2
-        Me.OrigDocTab.Text = "Orig Text"
-        Me.OrigDocTab.UseVisualStyleBackColor = True
-        '
-        'pdfViewer
-        '
-        Me.pdfViewer.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pdfViewer.Enabled = True
-        Me.pdfViewer.Location = New System.Drawing.Point(4, 5)
-        Me.pdfViewer.Name = "pdfViewer"
-        Me.pdfViewer.OcxState = CType(resources.GetObject("pdfViewer.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.pdfViewer.Size = New System.Drawing.Size(750, 289)
-        Me.pdfViewer.TabIndex = 0
+        Me.PartsTab.Controls.Add(Me.PartsTabCntrl)
+        Me.PartsTab.Location = New System.Drawing.Point(4, 29)
+        Me.PartsTab.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.PartsTab.Name = "PartsTab"
+        Me.PartsTab.Padding = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.PartsTab.Size = New System.Drawing.Size(758, 299)
+        Me.PartsTab.TabIndex = 1
+        Me.PartsTab.Text = "Parts"
+        Me.PartsTab.UseVisualStyleBackColor = True
         '
         'frmDocView
         '
@@ -218,12 +182,6 @@ Partial Class frmDocView
         Me.DocHdrTab.ResumeLayout(False)
         CType(Me.GrdDocProps, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PartsTab.ResumeLayout(False)
-        Me.PartsTabCntrl.ResumeLayout(False)
-        Me.TabPage1.ResumeLayout(False)
-        Me.PartPanel.ResumeLayout(False)
-        Me.PartPanel.PerformLayout()
-        Me.OrigDocTab.ResumeLayout(False)
-        CType(Me.pdfViewer, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -232,15 +190,13 @@ Partial Class frmDocView
     Friend WithEvents ToolStripStatusLabel1 As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents DocTabControl As System.Windows.Forms.TabControl
     Friend WithEvents DocHdrTab As System.Windows.Forms.TabPage
-    Friend WithEvents PartsTab As System.Windows.Forms.TabPage
-    Friend WithEvents OrigDocTab As System.Windows.Forms.TabPage
     Friend WithEvents GrdDocProps As System.Windows.Forms.DataGridView
     Friend WithEvents colDocPropLabel As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents colDocPropValue As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents PartsTab As System.Windows.Forms.TabPage
     Friend WithEvents PartsTabCntrl As System.Windows.Forms.TabControl
-    Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
     Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
+    Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
     Friend WithEvents PartPanel As System.Windows.Forms.Panel
     Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents pdfViewer As AxAcroPDFLib.AxAcroPDF
 End Class

@@ -16,3 +16,4 @@ C:\Users\user\Documents\BES_20180827\dgg-bes-src\BesSrc1\BesSrc1\bin\Debug\AxInt
 C:\Users\user\Documents\BES_20180827\dgg-bes-src\BesSrc1\BesSrc1\obj\Debug\Interop.AcroPDFLib.dll
 C:\Users\user\Documents\BES_20180827\dgg-bes-src\BesSrc1\BesSrc1\obj\Debug\AxInterop.AcroPDFLib.dll
 C:\Users\user\Documents\BES_20180827\dgg-bes-src\BesSrc1\BesSrc1\obj\Debug\BesSrc1.vbproj.ResolveComReference.cache
+C:\Users\user\Documents\BES_20180827\dgg-bes-src\BesSrc1\BesSrc1\obj\Debug\BesSrc1.uPartView.resources
