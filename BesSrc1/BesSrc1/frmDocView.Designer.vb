@@ -26,27 +26,27 @@ Partial Class frmDocView
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.DocTabControl = New System.Windows.Forms.TabControl()
         Me.DocHdrTab = New System.Windows.Forms.TabPage()
+        Me.tblHeaderLayout = New System.Windows.Forms.TableLayoutPanel()
         Me.GrdDocProps = New System.Windows.Forms.DataGridView()
         Me.colDocPropLabel = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colDocPropValue = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.grpOrigDoc = New System.Windows.Forms.GroupBox()
+        Me.cmdViewDocument = New System.Windows.Forms.Button()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.lblFileName = New System.Windows.Forms.Label()
         Me.PartsTab = New System.Windows.Forms.TabPage()
         Me.PartsTabCntrl = New System.Windows.Forms.TabControl()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.PartPanel = New System.Windows.Forms.Panel()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.tblHeaderLayout = New System.Windows.Forms.TableLayoutPanel()
-        Me.grpOrigDoc = New System.Windows.Forms.GroupBox()
-        Me.lblFileName = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.cmdViewDocument = New System.Windows.Forms.Button()
         Me.ToolStrip1.SuspendLayout()
         Me.DocTabControl.SuspendLayout()
         Me.DocHdrTab.SuspendLayout()
-        CType(Me.GrdDocProps, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PartsTab.SuspendLayout()
         Me.tblHeaderLayout.SuspendLayout()
+        CType(Me.GrdDocProps, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpOrigDoc.SuspendLayout()
+        Me.PartsTab.SuspendLayout()
         Me.SuspendLayout()
         '
         'ToolStrip1
@@ -89,6 +89,21 @@ Partial Class frmDocView
         Me.DocHdrTab.Text = "Header"
         Me.DocHdrTab.UseVisualStyleBackColor = True
         '
+        'tblHeaderLayout
+        '
+        Me.tblHeaderLayout.ColumnCount = 1
+        Me.tblHeaderLayout.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tblHeaderLayout.Controls.Add(Me.GrdDocProps, 0, 0)
+        Me.tblHeaderLayout.Controls.Add(Me.grpOrigDoc, 0, 1)
+        Me.tblHeaderLayout.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.tblHeaderLayout.Location = New System.Drawing.Point(4, 5)
+        Me.tblHeaderLayout.Name = "tblHeaderLayout"
+        Me.tblHeaderLayout.RowCount = 2
+        Me.tblHeaderLayout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.tblHeaderLayout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80.0!))
+        Me.tblHeaderLayout.Size = New System.Drawing.Size(750, 289)
+        Me.tblHeaderLayout.TabIndex = 1
+        '
         'GrdDocProps
         '
         Me.GrdDocProps.AllowUserToAddRows = False
@@ -114,6 +129,49 @@ Partial Class frmDocView
         Me.colDocPropValue.HeaderText = "Value:"
         Me.colDocPropValue.Name = "colDocPropValue"
         Me.colDocPropValue.ReadOnly = True
+        '
+        'grpOrigDoc
+        '
+        Me.grpOrigDoc.Controls.Add(Me.cmdViewDocument)
+        Me.grpOrigDoc.Controls.Add(Me.Label2)
+        Me.grpOrigDoc.Controls.Add(Me.lblFileName)
+        Me.grpOrigDoc.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.grpOrigDoc.Location = New System.Drawing.Point(3, 212)
+        Me.grpOrigDoc.Name = "grpOrigDoc"
+        Me.grpOrigDoc.Size = New System.Drawing.Size(744, 74)
+        Me.grpOrigDoc.TabIndex = 1
+        Me.grpOrigDoc.TabStop = False
+        Me.grpOrigDoc.Text = "Original Document"
+        '
+        'cmdViewDocument
+        '
+        Me.cmdViewDocument.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmdViewDocument.Location = New System.Drawing.Point(642, 27)
+        Me.cmdViewDocument.Name = "cmdViewDocument"
+        Me.cmdViewDocument.Size = New System.Drawing.Size(75, 34)
+        Me.cmdViewDocument.TabIndex = 2
+        Me.cmdViewDocument.Text = "View"
+        Me.cmdViewDocument.UseVisualStyleBackColor = True
+        '
+        'Label2
+        '
+        Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(21, 46)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(202, 20)
+        Me.Label2.TabIndex = 1
+        Me.Label2.Text = "File size: Filesize K/M/Bytes"
+        '
+        'lblFileName
+        '
+        Me.lblFileName.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.lblFileName.AutoSize = True
+        Me.lblFileName.Location = New System.Drawing.Point(21, 26)
+        Me.lblFileName.Name = "lblFileName"
+        Me.lblFileName.Size = New System.Drawing.Size(243, 20)
+        Me.lblFileName.TabIndex = 0
+        Me.lblFileName.Text = "Filename: Filename Filename.pdf"
         '
         'PartsTab
         '
@@ -172,64 +230,6 @@ Partial Class frmDocView
         Me.Label1.Size = New System.Drawing.Size(308, 20)
         Me.Label1.TabIndex = 0
         '
-        'tblHeaderLayout
-        '
-        Me.tblHeaderLayout.ColumnCount = 1
-        Me.tblHeaderLayout.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.tblHeaderLayout.Controls.Add(Me.GrdDocProps, 0, 0)
-        Me.tblHeaderLayout.Controls.Add(Me.grpOrigDoc, 0, 1)
-        Me.tblHeaderLayout.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tblHeaderLayout.Location = New System.Drawing.Point(4, 5)
-        Me.tblHeaderLayout.Name = "tblHeaderLayout"
-        Me.tblHeaderLayout.RowCount = 2
-        Me.tblHeaderLayout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.tblHeaderLayout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80.0!))
-        Me.tblHeaderLayout.Size = New System.Drawing.Size(750, 289)
-        Me.tblHeaderLayout.TabIndex = 1
-        '
-        'grpOrigDoc
-        '
-        Me.grpOrigDoc.Controls.Add(Me.cmdViewDocument)
-        Me.grpOrigDoc.Controls.Add(Me.Label2)
-        Me.grpOrigDoc.Controls.Add(Me.lblFileName)
-        Me.grpOrigDoc.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grpOrigDoc.Location = New System.Drawing.Point(3, 212)
-        Me.grpOrigDoc.Name = "grpOrigDoc"
-        Me.grpOrigDoc.Size = New System.Drawing.Size(744, 74)
-        Me.grpOrigDoc.TabIndex = 1
-        Me.grpOrigDoc.TabStop = False
-        Me.grpOrigDoc.Text = "Original Document"
-        '
-        'lblFileName
-        '
-        Me.lblFileName.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.lblFileName.AutoSize = True
-        Me.lblFileName.Location = New System.Drawing.Point(21, 26)
-        Me.lblFileName.Name = "lblFileName"
-        Me.lblFileName.Size = New System.Drawing.Size(243, 20)
-        Me.lblFileName.TabIndex = 0
-        Me.lblFileName.Text = "Filename: Filename Filename.pdf"
-        '
-        'Label2
-        '
-        Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(21, 46)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(202, 20)
-        Me.Label2.TabIndex = 1
-        Me.Label2.Text = "File size: Filesize K/M/Bytes"
-        '
-        'cmdViewDocument
-        '
-        Me.cmdViewDocument.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cmdViewDocument.Location = New System.Drawing.Point(642, 27)
-        Me.cmdViewDocument.Name = "cmdViewDocument"
-        Me.cmdViewDocument.Size = New System.Drawing.Size(75, 34)
-        Me.cmdViewDocument.TabIndex = 2
-        Me.cmdViewDocument.Text = "View"
-        Me.cmdViewDocument.UseVisualStyleBackColor = True
-        '
         'frmDocView
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
@@ -245,11 +245,11 @@ Partial Class frmDocView
         Me.ToolStrip1.PerformLayout()
         Me.DocTabControl.ResumeLayout(False)
         Me.DocHdrTab.ResumeLayout(False)
-        CType(Me.GrdDocProps, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PartsTab.ResumeLayout(False)
         Me.tblHeaderLayout.ResumeLayout(False)
+        CType(Me.GrdDocProps, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpOrigDoc.ResumeLayout(False)
         Me.grpOrigDoc.PerformLayout()
+        Me.PartsTab.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

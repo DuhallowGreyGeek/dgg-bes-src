@@ -118,4 +118,9 @@
         Call Me.SafeScreenResize()
     End Sub
 
+    Private Sub cmdViewDocument_Click(sender As Object, e As EventArgs) Handles cmdViewDocument.Click
+        Dim filename As String = "C:\Users\user\Documents\BES_20180827\bes_experiments\XMLExperiment\ProcXMLFile\ProcXMLFile\TheMessenger_06.pdf"
+        Dim pdfViewForm As New frmViewPdfDoc(filename)
+        Call pdfViewForm.Show()
+    End Sub
 End Class
