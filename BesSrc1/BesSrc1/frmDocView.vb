@@ -88,6 +88,7 @@
 
         Else    'This is unexpected - Set a message and disable the tab
             Me.DocTabControl.TabPages.Item(DPARTSTAB).Enabled = False           '*** Disabling/Visible tab doesn't work!
+            'However, tab remains empty
             '
             Me.ToolStripStatusLabel1.Text = "No Parts found for this Document!"
         End If

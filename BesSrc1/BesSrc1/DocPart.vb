@@ -16,7 +16,7 @@ Public Class DocPart
     Private mDocTo As String
     Private mSubject As String
     Private mSynopsis_Stored As String
-    'Private mSynopsis_Derived As String 
+    Private mSynopsis_Derived As String
     '
     Public Sub New(DocumentId As Integer, PartNum As Integer)
         'Constructor - Accepts the identifier of the DocPart concerned.
@@ -29,7 +29,8 @@ Public Class DocPart
 
         'Finally get the synopsis
         mSynopsis_Stored = Me.FetchSynopsis(DocumentId, PartNum)
-        'mSynopsis_Stored = "Dummy Synopsis. Typical synopsis would be much longer than a few words."
+        '
+        mSynopsis_Derived = Me.DeriveSynopsis(DocumentId, PartNum)
     End Sub
 
     ReadOnly Property PartNum As Integer
@@ -70,8 +71,8 @@ Public Class DocPart
 
     ReadOnly Property Synopsis_Derived As String
         Get
-            '*** Careful now! That's a dummy of a dummy!
-            Return mSynopsis_Stored
+            'All the work is done in DeriveSynopsis() and DeriveSynopsisCol()
+            Return mSynopsis_Derived
         End Get
     End Property
 
@@ -186,6 +187,84 @@ Public Class DocPart
 
         End Try
         Return synopsisText
+    End Function
+
+    Public Function DeriveSynopsisCol(documentId As Integer, PartNum As Integer) As Collection
+        'Derive the details of the Synopsis from the Usage and DocWord tables as a collection
+        'Return a collection of the words used, in the order they are encountered in the Synopsis column.
+        'There will be duplicates, because there will be in the original field.
+        'Intended to be used by the DeriveSysnopsis() as String function.
+        mRoutineName = "DeriveSynopsisCol()"      'To hold the name of the routine which generates an exception
+
+        Dim colUsedWords As New Collection
+        '
+        Dim conString As New System.Data.SqlClient.SqlConnectionStringBuilder
+
+        'Get Connection string data
+        conString.DataSource = params.SQLDataSource
+        conString.IntegratedSecurity = params.SQLIntegratedSecurity
+        conString.InitialCatalog = params.SQLInitCatalogDB
+
+        Try
+            Using sqlConnection As New SqlConnection(conString.ConnectionString)
+                'The DocumentIds we want to display are in the FoundDocIds table
+                sqlConnection.Open()
+                Dim queryText As String = "SELECT DISTINCT"
+                queryText = queryText & " usg.WordSeqNum, wrd.WordText "
+                queryText = queryText & " FROM dbo.DictWord AS wrd"
+                queryText = queryText & " INNER JOIN dbo.Usage AS usg on wrd.WordId = usg.WordId "
+                queryText = queryText & " WHERE usg.DocumentId = @DocumentId "
+                queryText = queryText & " AND usg.PartNum = @PartNum "
+                queryText = queryText & " ORDER BY usg.WordSeqNum "
+
+                Using sqlCommand As New SqlCommand(queryText, sqlConnection)
+                    sqlCommand.Parameters.AddWithValue("@DocumentId", documentId)
+                    sqlCommand.Parameters.AddWithValue("@PartNum", PartNum)
+
+                    Using reader = sqlCommand.ExecuteReader()
+
+                        If reader.HasRows Then
+                            'Console.WriteLine(" -- Document List --")
+
+                            Do While reader.Read
+
+                                colUsedWords.Add(reader.Item("WordText"))
+
+                            Loop
+                        Else
+
+                        End If
+                    End Using
+                End Using
+                sqlConnection.Close()
+            End Using
+
+        Catch ex As SqlException
+            Call Me.handleSQLException(ex)
+
+        Catch ex As Exception
+            Call Me.handleGeneralException(ex)
+
+        End Try
+        Return colUsedWords
+
+    End Function
+
+    Public Function DeriveSynopsis(documentId As Integer, PartNum As Integer) As String
+        'Derive the details of the Synopsis from the Usage and DocWord tables as a collection
+        'Return a string containing the words used, in the order they are encountered in the Synopsis column.
+        'There will be duplicates, because there will be in the original field.
+        'Most of the work is done by the DeriveSysnopsisCol() as Collection function.
+        mRoutineName = "DeriveSynopsisCol()"      'To hold the name of the routine which generates an exception
+
+        Dim derivedSynopsis As String = ""
+
+        For Each wordtxt As String In Me.DeriveSynopsisCol(documentId, PartNum)
+            derivedSynopsis = derivedSynopsis & " " & wordtxt
+        Next
+
+        Return derivedSynopsis
+
     End Function
 
     Public Sub Dump()
