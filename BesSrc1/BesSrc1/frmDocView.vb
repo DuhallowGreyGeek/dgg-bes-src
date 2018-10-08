@@ -71,11 +71,15 @@
                 With myPVCol(i)
                     .Dock = DockStyle.Fill
                     '
+                    'Properties of the Part are set by the part itself
                     .PartNum = partnum.ToString
-                    .DocSubject = "Subject - " & partnum.ToString & " " & partnum.ToString
-                    .DocDate = "Date! " & partnum.ToString & " " & partnum.ToString
-                    .DocFrom = "Somebody"
-                    .DocTo = "Somebody else"
+
+                    Dim part As DocPart = curDocument.Parts.Item(partnum)
+                    .DocSubject = part.Subject
+                    .DocDate = part.DocDate.ToString("yyyy-MM-dd", Globalization.CultureInfo.InvariantCulture)
+                    .DocFrom = part.DocFrom
+                    .DocTo = part.DocTo
+
                     .Synopsis_Stored = partnum.ToString & " She sells sea shells by the sea shore."
                     .Synopsis_Derived = "Peter Piper picked a peck of pickled pepper."
                 End With

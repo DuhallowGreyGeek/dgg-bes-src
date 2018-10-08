@@ -4,7 +4,6 @@ Public Class Document
     'Document presents the properties of the Document table.
     ' Remember: BesSrc is READ-ONLY. The object is created from the database.
     ' No updates are required.
-    'Object bringing together the function Bessie uses to search for documents.
     Const MODNAME As String = "Document"
     Friend mRoutineName As String = ""      'To hold the name of the routine which generates an exception
 
@@ -74,15 +73,53 @@ Public Class Document
         'Should always be at least one row, usually about 3.
         mRoutineName = "FetchDocParts()"      'To hold the name of the routine which generates an exception
 
+        Dim conString As New System.Data.SqlClient.SqlConnectionStringBuilder
+
+        'Get Connection string data
+        conString.DataSource = params.SQLDataSource
+        conString.IntegratedSecurity = params.SQLIntegratedSecurity
+        conString.InitialCatalog = params.SQLInitCatalogDB
+
+        Try
+            Using sqlConnection As New SqlConnection(conString.ConnectionString)
+                'The DocumentIds we want to display are in the FoundDocIds table
+                sqlConnection.Open()
+                Dim queryText As String = "SELECT "
+                queryText = queryText & " prt.PartNum "
+                queryText = queryText & " FROM dbo.Part as prt"
+                queryText = queryText & " WHERE prt.DocumentId = @DocumentId "
+                queryText = queryText & " ORDER BY prt.PartNum "
 
 
-        'Dim numParts As Integer = 3             'The number of dummy parts I'm going to generate (actually tested up to 999!)
-        'Dim partNum As Integer
+                Using sqlCommand As New SqlCommand(queryText, sqlConnection)
+                    sqlCommand.Parameters.AddWithValue("@DocumentId", DocumentId)
 
-        'For partNum = 1 To numParts
-        'Dim thisPart As New DocPart(mDocumentId, partNum)
-        'mDocPartCollection.Add(thisPart)
-        'Next
+                    Using reader = sqlCommand.ExecuteReader()
+
+                        If reader.HasRows Then
+                            'Console.WriteLine(" -- Document List --")
+                            Dim partNum As Integer
+
+                            Do While reader.Read
+                                partNum = reader.Item("PartNum")
+                                Dim aPart As New DocPart(mDocumentId, partNum)
+
+                                mDocPartCollection.Add(aPart)
+                                '
+                            Loop
+                        End If
+                    End Using
+                End Using
+                sqlConnection.Close()
+            End Using
+
+        Catch ex As SqlException
+            Call Me.handleSQLException(ex)
+
+        Catch ex As Exception
+            Call Me.handleGeneralException(ex)
+
+        End Try
 
     End Sub
 
@@ -112,6 +149,7 @@ Public Class Document
     Private Sub FetchDocDBData(DocumentId As Integer)
         'Fetch the details of the document from the database
         'Should always be one row
+
         '
         Dim conString As New System.Data.SqlClient.SqlConnectionStringBuilder
 
