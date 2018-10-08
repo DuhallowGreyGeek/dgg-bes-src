@@ -27,10 +27,8 @@ Public Class DocPart
         'Fetch the contents of the part
         Call Me.FetchDocPart(DocumentId, PartNum)
 
-        'mDocDate = Now
-        'mDocFrom = "Dummy From"
-        'mDocTo = "Dummy To"
-        'mSubject = "Dummy: " & DocumentId.ToString & " " & PartNum.ToString & "This is what the document is really about."
+        'Finally get the synopsis
+        mSynopsis_Stored = Me.FetchSynopsis(DocumentId, PartNum)
         'mSynopsis_Stored = "Dummy Synopsis. Typical synopsis would be much longer than a few words."
     End Sub
 
@@ -133,8 +131,62 @@ Public Class DocPart
 
         End Try
 
-
     End Sub
+
+    Private Function FetchSynopsis(documentId As Integer, PartNum As Integer) As String
+        'Fetch the details of Stored Synopsis from the database
+        'There should allways be one row because we are using the keys.
+        mRoutineName = "FetchSynopsis()"      'To hold the name of the routine which generates an exception
+        Dim synopsisText As String = "*** Error fetching the synopsis for: " & documentId.ToString & " : " & PartNum.ToString
+        '
+        Dim conString As New System.Data.SqlClient.SqlConnectionStringBuilder
+
+        'Get Connection string data
+        conString.DataSource = params.SQLDataSource
+        conString.IntegratedSecurity = params.SQLIntegratedSecurity
+        conString.InitialCatalog = params.SQLInitCatalogDB
+
+        Try
+            Using sqlConnection As New SqlConnection(conString.ConnectionString)
+                'The DocumentIds we want to display are in the FoundDocIds table
+                sqlConnection.Open()
+                Dim queryText As String = "SELECT "
+                queryText = queryText & " syn.Synopsis "
+                queryText = queryText & " FROM dbo.DocSynopsis as syn"
+                queryText = queryText & " WHERE syn.DocumentId = @DocumentId "
+                queryText = queryText & " AND syn.PartNum = @PartNum "
+
+                Using sqlCommand As New SqlCommand(queryText, sqlConnection)
+                    sqlCommand.Parameters.AddWithValue("@DocumentId", documentId)
+                    sqlCommand.Parameters.AddWithValue("@PartNum", PartNum)
+
+                    Using reader = sqlCommand.ExecuteReader()
+
+                        If reader.HasRows Then
+                            'Console.WriteLine(" -- Document List --")
+
+                            Do While reader.Read
+
+                                synopsisText = reader.Item("Synopsis")
+
+                            Loop
+                        Else
+
+                        End If
+                    End Using
+                End Using
+                sqlConnection.Close()
+            End Using
+
+        Catch ex As SqlException
+            Call Me.handleSQLException(ex)
+
+        Catch ex As Exception
+            Call Me.handleGeneralException(ex)
+
+        End Try
+        Return synopsisText
+    End Function
 
     Public Sub Dump()
         Console.WriteLine("--- Contents of the DocPart object ---- ")

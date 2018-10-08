@@ -80,8 +80,9 @@
                     .DocFrom = part.DocFrom
                     .DocTo = part.DocTo
 
-                    .Synopsis_Stored = partnum.ToString & " She sells sea shells by the sea shore."
-                    .Synopsis_Derived = "Peter Piper picked a peck of pickled pepper."
+                    '.Synopsis_Stored = partnum.ToString & " She sells sea shells by the sea shore."
+                    .Synopsis_Stored = part.Synopsis_Stored
+                    .Synopsis_Derived = part.Synopsis_Derived
                 End With
             Next
 
