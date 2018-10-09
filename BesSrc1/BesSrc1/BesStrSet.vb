@@ -1,30 +1,29 @@
-﻿Public Class BesIntSet
-    'BesIntSet has the following properties:
+﻿Public Class BesStrSet
+    'BesStrSet has the following properties:
+    ' - A collection or set of strings.
     ' - Only one instance of each value allowed - no duplicates. Adding a duplicate does nothing. No error.
     ' - achieved by overriding the function Add()
     'Special function provided is:
-    ' - Intersection(BesIntSet) - returns a BesIntSet containing the intersection elements 
-    ' - Union(BesIntSet) - returns a BesIntSet containing the union of this set and the parameter
-    'BesIntSet inherits from the simple "List" class
+    ' - Intersection(BesStrSet) - returns a BesStrSet containing the intersection elements 
+    ' - Union(BesStrSet) - returns a BesStrSet containing the union of this set and the parameter
+    'BesStrSet inherits from the simple "List" class
     'Intended us is to hold the keys of Documents which are found by the search
 
-    Inherits List(Of Integer)
+    Inherits List(Of String)
 
-    Overloads Sub Add(i As Integer)
+    Overloads Sub Add(str As String)
         ' If this is new, add it to the collection, otherwise skip it.
-        If MyBase.Contains(i) Then
-            'MsgBox("Found it!")
+        If MyBase.Contains(str) Then
             'Already there skip this one
         Else
-            'MsgBox("Didn't find it!")
-            MyBase.Add(i)
+            MyBase.Add(str)
         End If
 
     End Sub
 
     Public Sub Dump()
 
-        Console.WriteLine("--- Contents of the BesIntSet object ---- ")
+        Console.WriteLine("--- Contents of the BesStrSet object ---- ")
         Console.WriteLine("     Number of elements: " & MyBase.Count.ToString)
 
         Dim j As Integer
@@ -34,9 +33,9 @@
 
     End Sub
 
-    Public Function Union(outsideSet As BesIntSet)
+    Public Function Union(outsideSet As BesStrSet)
         'Returns the set union of this set (the "inside set") with the set provided as a parameter (the "outside set") 
-        Dim result As New BesIntSet
+        Dim result As New BesStrSet
 
         'Add the "Inside set" into the result
         Dim i As Integer
@@ -53,8 +52,8 @@
         Return result
     End Function
 
-    Public Function Intersection(outsideset As BesIntSet)
-        Dim result As New BesIntSet
+    Public Function Intersection(outsideset As BesStrSet)
+        Dim result As New BesStrSet
 
         'Assuming that it is more efficient for my code to do the minimum number of loops
 
