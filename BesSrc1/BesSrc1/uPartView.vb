@@ -128,4 +128,43 @@
         End If
 
     End Sub
+
+    Public Sub HighlightWords()
+        'Highlight all the words which match the search criteria
+        Call Me.HighlightEqWords()
+        Call Me.HighlightLikeWords()
+        '
+    End Sub
+
+    Private Sub HighlightEqWords()
+        'Highlight all the words which match the equals criteria
+        For Each word As String In srch.EqualsArguments
+            Dim intIndexToText As Integer = 0
+
+            While intIndexToText >= 0
+                intIndexToText = intIndexToText + 1
+
+                intIndexToText = rtxtStored.Find(word, intIndexToText, 9999, RichTextBoxFinds.WholeWord)
+                rtxtStored.SelectionFont = New Font("Verdana", 12, FontStyle.Bold)
+                rtxtStored.SelectionColor = Color.Blue
+
+            End While
+        Next
+    End Sub
+
+    Private Sub HighlightLikeWords()
+        'Highlight all the words which match the LIKE criteria
+        For Each word As String In srch.WordsLikeArguments
+            Dim intIndexToText As Integer = 0
+
+            While intIndexToText >= 0
+                intIndexToText = intIndexToText + 1
+
+                intIndexToText = rtxtStored.Find(word, intIndexToText, 9999, RichTextBoxFinds.WholeWord)
+                rtxtStored.SelectionFont = New Font("Verdana", 12, FontStyle.Bold)
+                rtxtStored.SelectionColor = Color.Blue
+
+            End While
+        Next
+    End Sub
 End Class

@@ -1,11 +1,11 @@
 ﻿Public Class frmDocView
-    Protected Friend PROPLABELWIDTH As Integer = 125 '250
+    Private Const PROPLABELWIDTH As Integer = 125 '250
     '
     'Indexes for the DocTabControl (Used when accessing the tabs thru the TabPages collection)
     '**** Just to confuse, they can't have the same names as the tabs!
-    Protected Friend DOCHEDRTAB As Integer = 0
-    Protected Friend DPARTSTAB As Integer = 1
-    Protected Friend ORGDOCTAB As Integer = 2
+    Private Const DOCHEDRTAB As Integer = 0
+    Private Const DPARTSTAB As Integer = 1
+    Private Const ORGDOCTAB As Integer = 2
 
     Dim myPVCol As New PartViewCollection(Me)
 
@@ -80,9 +80,10 @@
                     .DocFrom = part.DocFrom
                     .DocTo = part.DocTo
 
-                    '.Synopsis_Stored = partnum.ToString & " She sells sea shells by the sea shore."
                     .Synopsis_Stored = part.Synopsis_Stored
                     .Synopsis_Derived = part.Synopsis_Derived
+                    '
+                    Call .HighlightWords()
                 End With
             Next
 
@@ -93,9 +94,6 @@
             Me.ToolStripStatusLabel1.Text = "No Parts found for this Document!"
         End If
 
-        'Now display the pdf
-        'Me.pdfViewer.LoadFile("C:\Users\user\Desktop\Arkema.pdf")
-        'Me.pdfViewer.src = "file:///C:/Users/user/Desktop/Arkema.pdf"
     End Sub
 
     Private Sub SafeScreenResize()

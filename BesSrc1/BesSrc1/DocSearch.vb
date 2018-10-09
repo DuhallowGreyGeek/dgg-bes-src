@@ -10,6 +10,9 @@ Public Class DocSearch
     Const MODNAME As String = "DocSearch"
     Friend mRoutineName As String = ""      'To hold the name of the routine which generates an exception
 
+    Public EqualsArguments As New BesStrSet ' "Equals" Search arguments
+    Public WordsLikeArguments As New BesStrSet 'Words which are LIKE Search arguments
+
     Public Sub New()
 
     End Sub
@@ -454,12 +457,22 @@ Public Class DocSearch
         Const LIKEMARKERS As String = "%_[]"                'Presence of these characters indicates a "LIKE" parm
         Dim xMatchingDocs As New BesIntSet                  'Set of the matching DocumentIds
 
+        'Reset the sets containing the stored argumuments
+        Me.EqualsArguments.Clear()
+        Me.WordsLikeArguments.Clear()
+
         'The set starts out empty. The first set of results has to be added into it.
         Dim iRowCounter As Integer = 0                      'Intialise a iRowCounter
         For Each argument As String In argumentList
             iRowCounter = iRowCounter + 1
 
             If argument.IndexOfAny(LIKEMARKERS) <> -1 Then        'The argument is for the "LIKE" case. -1 is the "not found"
+
+                'Add all the words which match the LIKE search argument to the set
+                For Each word As String In Me.WordsLikeThisArgument(argument)
+                    Me.WordsLikeArguments.Add(word)
+                Next
+
                 If iRowCounter = 1 Then
                     Dim curSetMatchingDocs As New BesIntSet
                     curSetMatchingDocs = srch.DocsLikeArg(argument)
@@ -470,6 +483,7 @@ Public Class DocSearch
                 End If
 
             Else                                            'The argument is for the "equals" case
+                Me.EqualsArguments.Add(argument)            'Add the argument to the set of arguments
                 If iRowCounter = 1 Then
                     Dim curSetMatchingDocs As New BesIntSet
                     curSetMatchingDocs = srch.DocsEqualArg(argument)
@@ -483,6 +497,63 @@ Public Class DocSearch
         Next
 
         Return xMatchingDocs
+    End Function
+
+    Private Function WordsLikeThisArgument(argument As String) As BesStrSet
+        'Return all the words which match a particular LIKE argument
+        mRoutineName = "WordsLikeThisArgument(argument As String)"
+
+        Dim wordsLkeThisArgumentSet As New BesStrSet
+        '
+        Dim conString As New System.Data.SqlClient.SqlConnectionStringBuilder
+
+        'Get Connection string data
+        conString.DataSource = params.SQLDataSource
+        conString.IntegratedSecurity = params.SQLIntegratedSecurity
+        conString.InitialCatalog = params.SQLInitCatalogDB
+
+        Try
+            Using sqlConnection As New SqlConnection(conString.ConnectionString)
+
+                sqlConnection.Open()
+                Dim queryText As String = "SELECT  "
+                queryText = queryText & " wd.WordText "
+                queryText = queryText & " FROM dbo.DictWord as wd"
+                queryText = queryText & " WHERE wd.WordText LIKE @argument"
+
+                Using sqlCommand As New SqlCommand(queryText, sqlConnection)
+
+                    'Now substitute the values into the command
+                    sqlCommand.Parameters.AddWithValue("@argument", argument)
+
+
+                    Using reader = sqlCommand.ExecuteReader()
+
+                        If reader.HasRows Then
+                            'Console.WriteLine(" -- Word List --")
+
+                            Do While reader.Read
+
+                                'Console.WriteLine("Like Word    : " & reader.Item("WordText").ToString())
+
+                                wordsLkeThisArgumentSet.Add(reader.Item("WordText"))
+                            Loop
+                            'Console.WriteLine(" ")
+                        End If
+                    End Using
+                End Using
+                sqlConnection.Close()
+            End Using
+
+        Catch ex As SqlException
+            Call Me.handleSQLException(ex)
+
+        Catch ex As Exception
+            Call Me.handleGeneralException(ex)
+
+        End Try
+        '
+        Return wordsLkeThisArgumentSet
     End Function
 
     Private Sub handleSQLException(ex As SqlException)
@@ -503,7 +574,7 @@ Public Class DocSearch
         Console.WriteLine("Error: " & ex.Message.ToString & " is not a valid column" & vbNewLine)
         Console.WriteLine(ex.ToString & vbNewLine)
 
-        MsgBox("Non-SQL exception - Look at the console", MsgBoxStyle.Critical, "Bessie SQL")
+        MsgBox("Non-SQL exception - Look at the console", MsgBoxStyle.Critical, "Bessie")
 
     End Sub
 
