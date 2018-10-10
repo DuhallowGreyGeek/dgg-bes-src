@@ -31,8 +31,9 @@ Partial Class frmDocView
         Me.colDocPropLabel = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colDocPropValue = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.grpOrigDoc = New System.Windows.Forms.GroupBox()
+        Me.lblFileNameBodge = New System.Windows.Forms.Label()
         Me.cmdViewDocument = New System.Windows.Forms.Button()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Me.lblFileSize = New System.Windows.Forms.Label()
         Me.lblFileName = New System.Windows.Forms.Label()
         Me.PartsTab = New System.Windows.Forms.TabPage()
         Me.PartsTabCntrl = New System.Windows.Forms.TabControl()
@@ -132,8 +133,9 @@ Partial Class frmDocView
         '
         'grpOrigDoc
         '
+        Me.grpOrigDoc.Controls.Add(Me.lblFileNameBodge)
         Me.grpOrigDoc.Controls.Add(Me.cmdViewDocument)
-        Me.grpOrigDoc.Controls.Add(Me.Label2)
+        Me.grpOrigDoc.Controls.Add(Me.lblFileSize)
         Me.grpOrigDoc.Controls.Add(Me.lblFileName)
         Me.grpOrigDoc.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grpOrigDoc.Location = New System.Drawing.Point(3, 212)
@@ -142,6 +144,16 @@ Partial Class frmDocView
         Me.grpOrigDoc.TabIndex = 1
         Me.grpOrigDoc.TabStop = False
         Me.grpOrigDoc.Text = "Original Document"
+        '
+        'lblFileNameBodge
+        '
+        Me.lblFileNameBodge.AutoSize = True
+        Me.lblFileNameBodge.Location = New System.Drawing.Point(321, 26)
+        Me.lblFileNameBodge.Name = "lblFileNameBodge"
+        Me.lblFileNameBodge.Size = New System.Drawing.Size(57, 20)
+        Me.lblFileNameBodge.TabIndex = 3
+        Me.lblFileNameBodge.Text = "Label2"
+        Me.lblFileNameBodge.Visible = False
         '
         'cmdViewDocument
         '
@@ -153,15 +165,15 @@ Partial Class frmDocView
         Me.cmdViewDocument.Text = "View"
         Me.cmdViewDocument.UseVisualStyleBackColor = True
         '
-        'Label2
+        'lblFileSize
         '
-        Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(21, 46)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(202, 20)
-        Me.Label2.TabIndex = 1
-        Me.Label2.Text = "File size: Filesize K/M/Bytes"
+        Me.lblFileSize.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.lblFileSize.AutoSize = True
+        Me.lblFileSize.Location = New System.Drawing.Point(21, 46)
+        Me.lblFileSize.Name = "lblFileSize"
+        Me.lblFileSize.Size = New System.Drawing.Size(202, 20)
+        Me.lblFileSize.TabIndex = 1
+        Me.lblFileSize.Text = "File size: Filesize K/M/Bytes"
         '
         'lblFileName
         '
@@ -270,6 +282,7 @@ Partial Class frmDocView
     Friend WithEvents tblHeaderLayout As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents grpOrigDoc As System.Windows.Forms.GroupBox
     Friend WithEvents cmdViewDocument As System.Windows.Forms.Button
-    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents lblFileSize As System.Windows.Forms.Label
     Friend WithEvents lblFileName As System.Windows.Forms.Label
+    Friend WithEvents lblFileNameBodge As System.Windows.Forms.Label
 End Class

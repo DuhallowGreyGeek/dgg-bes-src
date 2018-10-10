@@ -7,7 +7,9 @@
     Private Const DPARTSTAB As Integer = 1
     Private Const ORGDOCTAB As Integer = 2
 
-    Dim myPVCol As New PartViewCollection(Me)
+    Private myPVCol As New PartViewCollection(Me)
+    Private curDocument As Document                 'So it can be shared throughout the Form
+    Private mFileName As String                     'Fully qualified name of the DocumentFile
 
     Public Sub New(ByVal DocumentId As Integer)
 
@@ -20,7 +22,7 @@
         Me.ToolStripStatusLabel1.Text = Me.Text
 
         'Load the Document object
-        Dim curDocument As New Document(DocumentId)    'Create a new Document from the database
+        curDocument = New Document(DocumentId) 'Get the Document values from the database
         'Call curDocument.Dump()
 
         'Add the rows to the data grid and populate with values
@@ -50,6 +52,7 @@
         Dim iFpath As Integer = Me.GrdDocProps.Rows.Add()
         Me.GrdDocProps.Rows.Item(iFpath).Cells.Item(LABCOL).Value = "File path"
         Me.GrdDocProps.Rows.Item(iFpath).Cells.Item(VALCOL).Value = curDocument.Path
+
         '
         'Now move on to the "Parts" tab
         If curDocument.Parts.Count > 0 Then
@@ -116,9 +119,45 @@
         Call Me.SafeScreenResize()
     End Sub
 
+    Private Sub frmDocView_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        '*** I have no idea why mFileName is not visible inside cmdViewDocument
+        'I am using lblFileNameBodge to pass the name in. Ugly!
+
+        Me.cmdViewDocument.Enabled = False
+
+        'Construct filepath for pdf, and enable/disable viewing
+        Dim shortFileName As String = "Brian_Eno.pdf"
+        Dim mFileName As String = params.FilePathHome & curDocument.Path & curDocument.FileName
+        'Console.WriteLine("--Shown---> " & mFileName)
+        lblFileNameBodge.Text = mFileName
+
+        If System.IO.File.Exists(mFileName) Then
+            Me.lblFileName.Text = "Filename: " & curDocument.FileName
+            Me.lblFileSize.Text = "File Size: " & FileLen(mFileName).ToString & " Bytes"
+            Me.cmdViewDocument.Enabled = True
+        Else
+            Me.lblFileName.Text = "Filename: Not found!"
+            Me.lblFileSize.Text = "File Size: Not found!"
+        End If
+
+
+    End Sub
+
     Private Sub cmdViewDocument_Click(sender As Object, e As EventArgs) Handles cmdViewDocument.Click
-        Dim filename As String = "C:\Users\user\Documents\BES_20180827\bes_experiments\XMLExperiment\ProcXMLFile\ProcXMLFile\TheMessenger_06.pdf"
-        Dim pdfViewForm As New frmViewPdfDoc(filename)
-        Call pdfViewForm.Show()
+        '*** I have no idea why mFileName is not visible inside cmdViewDocument
+        'I am using lblFileNameBodge to pass the name in. Ugly!
+        'Console.WriteLine("Inside the cmdViewDocument button --- Why isn't it seeing the mFileName?")
+        Dim filename As String = lblFileNameBodge.Text
+        'Console.WriteLine("-----> " & Me.lblFileNameBodge.Text)
+        'Call MsgBox("Display File: " & Me.lblFileNameBodge.Text)
+
+        Try
+            Dim pdfViewForm As New frmViewPdfDoc(filename)
+            Call pdfViewForm.Show()
+        Catch ex As Exception
+            Console.WriteLine(ex.ToString)
+            Call MsgBox("Failure displaying pdfFile: " & Me.lblFileNameBodge.Text, MsgBoxStyle.Critical)
+        End Try
+
     End Sub
 End Class

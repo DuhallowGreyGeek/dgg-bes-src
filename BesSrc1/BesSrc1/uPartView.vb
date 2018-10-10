@@ -146,7 +146,7 @@
 
                 intIndexToText = rtxtStored.Find(word, intIndexToText, 9999, RichTextBoxFinds.WholeWord)
                 rtxtStored.SelectionFont = New Font("Verdana", 12, FontStyle.Bold)
-                rtxtStored.SelectionColor = Color.Blue
+                rtxtStored.SelectionColor = Color.Red
 
             End While
         Next
@@ -162,7 +162,7 @@
 
                 intIndexToText = rtxtStored.Find(word, intIndexToText, 9999, RichTextBoxFinds.WholeWord)
                 rtxtStored.SelectionFont = New Font("Verdana", 12, FontStyle.Bold)
-                rtxtStored.SelectionColor = Color.Blue
+                rtxtStored.SelectionColor = Color.Red
 
             End While
         Next

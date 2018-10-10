@@ -14,6 +14,7 @@ Public Class BesParam
     Private mstrSQLIntegratedSecurity As String
     Private mblnSQLIntegratedSecurity As Boolean
     Private mstrSQLInitCatalogDB As String
+    Private mstrFilePathHome As String
 
     Public Sub New()
         Const METHOD As String = "New"
@@ -80,9 +81,15 @@ Public Class BesParam
                 'Console.WriteLine(mstrSQLInitCatalogDB)
                 reader.ReadEndElement()
                 '
+                reader.ReadStartElement("file-path-home")
+                mstrFilePathHome = reader.ReadString()
+                'Console.Write("The content of the file-path-home:  ")
+                'Console.WriteLine(mstrFilePathHome)
+                reader.ReadEndElement()
 
                 '
                 reader.ReadEndElement()     'Read the end of the <parameters>
+                'Call Me.Dump()
             End Using
         Catch exp As Exception
             Console.WriteLine(THISCLASS & "." & METHOD & " The process failed: {0}", e.ToString())
@@ -121,6 +128,13 @@ Public Class BesParam
 
     End Property
 
+    Public ReadOnly Property FilePathHome As String
+        Get
+            Return mstrFilePathHome
+        End Get
+
+    End Property
+
     Public Sub Dump()
         Console.WriteLine("__Dump Parameters:__")
         Console.WriteLine("__.appVersion --->" & Me.ApplicationVersion)
@@ -128,6 +142,7 @@ Public Class BesParam
         Console.WriteLine("__.SQLDataSource --->" & Me.SQLDataSource)
         Console.WriteLine("__.SQLIntegratedSecurity->" & Me.SQLIntegratedSecurity)
         Console.WriteLine("__.SQLInitCatalogDB -->" & Me.SQLInitCatalogDB)
+        Console.WriteLine("__.FilePathHome -->" & Me.FilePathHome)
     End Sub
 
 

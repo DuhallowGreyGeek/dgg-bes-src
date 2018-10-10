@@ -10,6 +10,9 @@
       <SQLDataSource>LENOVOUSER\SQLEXPRESS</SQLDataSource>
       <SQLIntegratedSecurity>True</SQLIntegratedSecurity>
       <SQLInitCatalogDB>BessieDev</SQLInitCatalogDB>
+    
+      <!-- "Home" of location of pdf files - Again, Single Database - Note: trailing back-slash -->
+      <file-path-home>C:\Users\user\Documents\BES_20180827\</file-path-home>
     </parameters>
     
 
