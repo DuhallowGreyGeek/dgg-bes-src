@@ -30,10 +30,6 @@ Partial Class frmBesSrcMain
         Me.txtSearchCriteria = New System.Windows.Forms.TextBox()
         Me.cmdSearch = New System.Windows.Forms.Button()
         Me.grdFoundDocs = New System.Windows.Forms.DataGridView()
-        Me.colDocId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colDocLabel = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colDocDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colDocTitle = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.mnuMainMenu = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OptionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -47,6 +43,10 @@ Partial Class frmBesSrcMain
         Me.PopulateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DumpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenDocumentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.colDocId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colDocLabel = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colDocDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.colDocTitle = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.statStatusStrip.SuspendLayout()
         CType(Me.horizSplit, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.horizSplit.Panel1.SuspendLayout()
@@ -133,7 +133,7 @@ Partial Class frmBesSrcMain
         Me.cmdSearch.Location = New System.Drawing.Point(35, 21)
         Me.cmdSearch.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.cmdSearch.Name = "cmdSearch"
-        Me.cmdSearch.Size = New System.Drawing.Size(75, 35)
+        Me.cmdSearch.Size = New System.Drawing.Size(73, 35)
         Me.cmdSearch.TabIndex = 1
         Me.cmdSearch.Text = "Search"
         Me.cmdSearch.UseVisualStyleBackColor = True
@@ -149,28 +149,6 @@ Partial Class frmBesSrcMain
         Me.grdFoundDocs.Name = "grdFoundDocs"
         Me.grdFoundDocs.Size = New System.Drawing.Size(646, 134)
         Me.grdFoundDocs.TabIndex = 0
-        '
-        'colDocId
-        '
-        Me.colDocId.HeaderText = "Doc Id:"
-        Me.colDocId.Name = "colDocId"
-        Me.colDocId.ReadOnly = True
-        '
-        'colDocLabel
-        '
-        Me.colDocLabel.HeaderText = "Label:"
-        Me.colDocLabel.Name = "colDocLabel"
-        '
-        'colDocDate
-        '
-        Me.colDocDate.HeaderText = "Date:"
-        Me.colDocDate.Name = "colDocDate"
-        '
-        'colDocTitle
-        '
-        Me.colDocTitle.HeaderText = "Title:"
-        Me.colDocTitle.Name = "colDocTitle"
-        Me.colDocTitle.Width = 500
         '
         'mnuMainMenu
         '
@@ -259,6 +237,29 @@ Partial Class frmBesSrcMain
         Me.OpenDocumentToolStripMenuItem.Size = New System.Drawing.Size(162, 22)
         Me.OpenDocumentToolStripMenuItem.Text = "Open Document"
         '
+        'colDocId
+        '
+        Me.colDocId.HeaderText = "Doc Id:"
+        Me.colDocId.Name = "colDocId"
+        Me.colDocId.ReadOnly = True
+        '
+        'colDocLabel
+        '
+        Me.colDocLabel.HeaderText = "Label:"
+        Me.colDocLabel.Name = "colDocLabel"
+        Me.colDocLabel.Width = 135
+        '
+        'colDocDate
+        '
+        Me.colDocDate.HeaderText = "Date:"
+        Me.colDocDate.Name = "colDocDate"
+        '
+        'colDocTitle
+        '
+        Me.colDocTitle.HeaderText = "Title:"
+        Me.colDocTitle.Name = "colDocTitle"
+        Me.colDocTitle.Width = 500
+        '
         'frmBesSrcMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
@@ -310,9 +311,9 @@ Partial Class frmBesSrcMain
     Friend WithEvents DumpToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents toolStripMessage As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents ConsoleVisibleToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents OpenDocumentToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents colDocId As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents colDocLabel As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents colDocDate As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents colDocTitle As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents OpenDocumentToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

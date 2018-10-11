@@ -69,6 +69,8 @@
     End Sub
 
     Private Sub frmBesSrcMain_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Me.Text = "** Bessie ** - Inverted Key Proof-of-Concept "
+
         'Set the minimum height for the top panel
         Me.horizSplit.Panel1MinSize = TOPPANELHEIGHT
         Me.toolStripMessage.Text = ""                                       'Clear the status message

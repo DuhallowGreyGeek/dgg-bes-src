@@ -18,7 +18,7 @@
 
         ' Add any initialization after the InitializeComponent() call.
 
-        Me.Text = "Passed value: " & DocumentId.ToString
+        Me.Text = "Bessie: DocumentId: " & DocumentId.ToString
         Me.ToolStripStatusLabel1.Text = Me.Text
 
         'Load the Document object
@@ -36,6 +36,7 @@
         Dim iDocLabel As Integer = Me.GrdDocProps.Rows.Add()
         Me.GrdDocProps.Rows.Item(iDocLabel).Cells.Item(LABCOL).Value = "Document Label"
         Me.GrdDocProps.Rows.Item(iDocLabel).Cells.Item(VALCOL).Value = curDocument.DocumentLabel
+        Me.Text = Me.Text & " Label: " & curDocument.DocumentLabel.Substring(0, 12)
         '
         Dim iDocDate As Integer = Me.GrdDocProps.Rows.Add()
         Me.GrdDocProps.Rows.Item(iDocDate).Cells.Item(LABCOL).Value = "Orig Date"
@@ -44,6 +45,7 @@
         Dim iDocTitle As Integer = Me.GrdDocProps.Rows.Add()
         Me.GrdDocProps.Rows.Item(iDocTitle).Cells.Item(LABCOL).Value = "Title"
         Me.GrdDocProps.Rows.Item(iDocTitle).Cells.Item(VALCOL).Value = curDocument.Title
+        Me.Text = Me.Text & " - " & curDocument.Title
         '
         Dim iFname As Integer = Me.GrdDocProps.Rows.Add()
         Me.GrdDocProps.Rows.Item(iFname).Cells.Item(LABCOL).Value = "File name"
@@ -126,7 +128,6 @@
         Me.cmdViewDocument.Enabled = False
 
         'Construct filepath for pdf, and enable/disable viewing
-        Dim shortFileName As String = "Brian_Eno.pdf"
         Dim mFileName As String = params.FilePathHome & curDocument.Path & curDocument.FileName
         'Console.WriteLine("--Shown---> " & mFileName)
         lblFileNameBodge.Text = mFileName
@@ -153,6 +154,7 @@
 
         Try
             Dim pdfViewForm As New frmViewPdfDoc(filename)
+            pdfViewForm.Text = Me.Text
             Call pdfViewForm.Show()
         Catch ex As Exception
             Console.WriteLine(ex.ToString)
