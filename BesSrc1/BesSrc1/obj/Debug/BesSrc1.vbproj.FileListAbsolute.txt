@@ -18,3 +18,7 @@ C:\Users\user\Documents\BES_20180827\dgg-bes-src\BesSrc1\BesSrc1\obj\Debug\AxInt
 C:\Users\user\Documents\BES_20180827\dgg-bes-src\BesSrc1\BesSrc1\obj\Debug\BesSrc1.vbproj.ResolveComReference.cache
 C:\Users\user\Documents\BES_20180827\dgg-bes-src\BesSrc1\BesSrc1\obj\Debug\BesSrc1.uPartView.resources
 C:\Users\user\Documents\BES_20180827\dgg-bes-src\BesSrc1\BesSrc1\obj\Debug\BesSrc1.frmViewPdfDoc.resources
+C:\Users\user\Documents\BES_20180827\dgg-bes-src\BesSrc1\BesSrc1\bin\Debug\BesSrc1.exe.manifest
+C:\Users\user\Documents\BES_20180827\dgg-bes-src\BesSrc1\BesSrc1\bin\Debug\BesSrc1.application
+C:\Users\user\Documents\BES_20180827\dgg-bes-src\BesSrc1\BesSrc1\obj\Debug\BesSrc1.exe.manifest
+C:\Users\user\Documents\BES_20180827\dgg-bes-src\BesSrc1\BesSrc1\obj\Debug\BesSrc1.application
