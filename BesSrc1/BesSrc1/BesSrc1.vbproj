@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{AE613673-F679-41E6-959A-ACCC14454481}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <StartupObject>Sub Main</StartupObject>
+    <StartupObject>BesSrc1.frmBesSrcMain</StartupObject>
     <RootNamespace>BesSrc1</RootNamespace>
     <AssemblyName>BesSrc1</AssemblyName>
     <FileAlignment>512</FileAlignment>
@@ -23,7 +23,11 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>1</ApplicationRevision>
+    <SupportUrl>http://duhallowgreygeek.com/contact/</SupportUrl>
+    <ProductName>Bessie Search Client</ProductName>
+    <PublisherName>DGG Bunter Text Search</PublisherName>
+    <SuiteName>Bunter Document Search</SuiteName>
+    <ApplicationRevision>4</ApplicationRevision>
     <ApplicationVersion>0.1.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
