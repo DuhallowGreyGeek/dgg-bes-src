@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{AE613673-F679-41E6-959A-ACCC14454481}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <StartupObject>BesSrc1.frmBesSrcMain</StartupObject>
+    <StartupObject>Sub Main</StartupObject>
     <RootNamespace>BesSrc1</RootNamespace>
     <AssemblyName>BesSrc1</AssemblyName>
     <FileAlignment>512</FileAlignment>

@@ -69,6 +69,9 @@
     End Sub
 
     Private Sub frmBesSrcMain_Load(sender As Object, e As EventArgs) Handles Me.Load
+        gWndHndl = Me.Handle                        'Window handle to use as session id
+        fdocs = New FoundDocs(gWndHndl)             'Associate foundDocs with this window
+
         Me.Text = "** Bessie ** - Inverted Key Proof-of-Concept "
 
         'Set the minimum height for the top panel

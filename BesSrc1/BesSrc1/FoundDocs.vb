@@ -13,10 +13,14 @@ Public Class FoundDocs
     Const MODNAME As String = "FoundDocs"
     Friend mRoutineName As String = ""      'To hold the name of the routine which generates an exception
 
-    Dim mFoundDocIds As New Collection
+    Private mFoundDocIds As New BesIntSet
+    Private mWndwHndl As Integer
+    'Private mDBConnection As Object
 
-    Public Sub New()
-        'This is where the setup of the session-id or the temporary table will go.
+    Public Sub New(WndwHndl As Integer)
+        ' Set up how we will use the table of Found DocumentIds
+        mWndwHndl = WndwHndl
+
     End Sub
 
     Public Sub Clear()
@@ -35,15 +39,13 @@ Public Class FoundDocs
         Dim sqlConnection As New System.Data.SqlClient.SqlConnection(conString.ConnectionString)
 
         'Build the query command structure
-        Dim queryString As String = "DELETE FROM dbo.FoundDocIds"
-        'If I use the SessionId approach, then there will be a WHERE clause with a SessionId
-
-        'Console.WriteLine(queryString)
+        Dim queryString As String = "DELETE FROM dbo.FoundDocIds "
+        queryString = queryString & "WHERE WndwHndl = @WndwHndl "
 
         Dim sqlCommand = New SqlCommand(queryString, sqlConnection)
 
         'Now substitute the values into the command
-        'sqlCommand.Parameters.AddWithValue("@SessionId", sessionId)
+        sqlCommand.Parameters.AddWithValue("@WndwHndl", mWndwHndl)
 
         'Console.WriteLine("--sqlCommand--> " & sqlCommand.CommandText)
 
@@ -72,7 +74,7 @@ Public Class FoundDocs
         Console.WriteLine(" ")
     End Sub
 
-    ReadOnly Property FoundDocIds As Collection
+    ReadOnly Property FoundDocIds As BesIntSet
         'Expose the list of DocumentIds
         Get
             Return mFoundDocIds
@@ -94,9 +96,10 @@ Public Class FoundDocs
         Dim sqlConnection As New System.Data.SqlClient.SqlConnection(conString.ConnectionString)
 
         'Build the query command structure
-        Dim queryString As String = "INSERT INTO dbo.FoundDocIds ("
+        Dim queryString As String = "INSERT INTO dbo.FoundDocIds ( WndwHndl, "
         queryString = queryString & "DocumentID )"
         queryString = queryString & " VALUES( "
+        queryString = queryString & " @WndwHndl, "
         queryString = queryString & " @DocumentID "
         queryString = queryString & " )"
         '*** Will need to add SessionId if I take that approach or change the name to the temporary table
@@ -106,6 +109,7 @@ Public Class FoundDocs
         Dim sqlCommand = New SqlCommand(queryString, sqlConnection)
 
         'Now substitute the values into the command
+        sqlCommand.Parameters.AddWithValue("@WndwHndl", mWndwHndl)
         sqlCommand.Parameters.AddWithValue("@DocumentID", documentId)
 
         'Console.WriteLine("--sqlCommand--> " & sqlCommand.CommandText)
