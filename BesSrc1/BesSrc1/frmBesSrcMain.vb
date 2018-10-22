@@ -12,44 +12,48 @@
         Const MAXDOCSON As Boolean = True                                  'Ceiling on number of docs displayed
         Const MAXDOCNUM As Integer = 999                                    'Ceiling num of docs
 
-        fdocs.Clear()                                                       'Clear the cache
-        Me.grdFoundDocs.Rows.Clear()                                        'Clear the FoundDocs grid
-        Me.toolStripMessage.Text = ""                                       'Clear the status message
+        Try
+            fdocs.Clear()                                                       'Clear the cache
+            Me.grdFoundDocs.Rows.Clear()                                        'Clear the FoundDocs grid
+            Me.toolStripMessage.Text = ""                                       'Clear the status message
 
-        Dim searchArguments As New Collection                               'Parse the arguments
-        searchArguments = srch.ParsedSearchArgs(txtSearchCriteria.Text.ToString)
+            Dim searchArguments As New Collection                               'Parse the arguments
+            searchArguments = srch.ParsedSearchArgs(txtSearchCriteria.Text.ToString)
 
-        Dim matchedDocuments As New BesIntSet                               'Get the matching documents
-        matchedDocuments = srch.MatchingDocs(searchArguments)
+            Dim matchedDocuments As New BesIntSet                               'Get the matching documents
+            matchedDocuments = srch.MatchingDocs(searchArguments)
 
-        'Add the matched documents to the cache
-        For Each documentId As Integer In matchedDocuments
-            fdocs.Add(documentId)
-        Next
+            'Add the matched documents to the cache
+            For Each documentId As Integer In matchedDocuments
+                fdocs.Add(documentId)
+            Next
 
-        If fdocs.FoundDocIds.Count > 0 Then
-            If MAXDOCSON And fdocs.FoundDocIds.Count > MAXDOCNUM Then       'Too many docs to display
-                Me.toolStripMessage.Text = "Found: " & srch.ListDocumentRows.Count.ToString & " which is more than the maximum of: " & MAXDOCNUM.ToString
+            If fdocs.FoundDocIds.Count > 0 Then
+                If MAXDOCSON And fdocs.FoundDocIds.Count > MAXDOCNUM Then       'Too many docs to display
+                    Me.toolStripMessage.Text = "Found: " & srch.ListDocumentRows.Count.ToString & " which is more than the maximum of: " & MAXDOCNUM.ToString
 
+                Else
+
+                    Me.toolStripMessage.Text = "Found: " & srch.ListDocumentRows.Count.ToString & " documents."
+
+                    For Each DocumentRow As DocumentRow In srch.ListDocumentRows
+                        Dim rowid As Integer = Me.grdFoundDocs.Rows.Add()
+                        Me.grdFoundDocs.Rows.Item(rowid).Cells.Item(0).Value = DocumentRow.DocId
+                        Me.grdFoundDocs.Rows.Item(rowid).Cells.Item(1).Value = DocumentRow.Label
+                        Me.grdFoundDocs.Rows.Item(rowid).Cells.Item(2).Value = DocumentRow.DocDate.ToString("yyyy-MM-dd", Globalization.CultureInfo.InvariantCulture)
+                        Me.grdFoundDocs.Rows.Item(rowid).Cells.Item(3).Value = DocumentRow.Title
+
+                    Next
+                End If
             Else
-
-                Me.toolStripMessage.Text = "Found: " & srch.ListDocumentRows.Count.ToString & " documents."
-
-                For Each DocumentRow As DocumentRow In srch.ListDocumentRows
-                    Dim rowid As Integer = Me.grdFoundDocs.Rows.Add()
-                    Me.grdFoundDocs.Rows.Item(rowid).Cells.Item(0).Value = DocumentRow.DocId
-                    Me.grdFoundDocs.Rows.Item(rowid).Cells.Item(1).Value = DocumentRow.Label
-                    Me.grdFoundDocs.Rows.Item(rowid).Cells.Item(2).Value = DocumentRow.DocDate.ToString("yyyy-MM-dd", Globalization.CultureInfo.InvariantCulture)
-                    Me.grdFoundDocs.Rows.Item(rowid).Cells.Item(3).Value = DocumentRow.Title
-
-                Next
+                Me.toolStripMessage.Text = "Found no documents."
             End If
-        Else
-            Me.toolStripMessage.Text = "Found no documents."
-        End If
 
-        'Now set the focus back in the search criteria text box
-        Me.txtSearchCriteria.Focus()
+            'Now set the focus back in the search criteria text box
+            Me.txtSearchCriteria.Focus()
+        Catch ex As Exception
+            Call MsgBox(ex.Message, MsgBoxStyle.Critical, "Bessie")
+        End Try
 
     End Sub
 
@@ -67,6 +71,7 @@
             Call documentForm.Show()
         End If
     End Sub
+
 
     Private Sub frmBesSrcMain_Load(sender As Object, e As EventArgs) Handles Me.Load
         gWndHndl = Me.Handle                        'Window handle to use as session id

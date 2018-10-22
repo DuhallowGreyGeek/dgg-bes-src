@@ -4,12 +4,10 @@ Imports System.Data.SqlClient
 Public Class FoundDocs
     'FoundDocs manages a cache of the DocumentIds for the documents which match the search criteria.
     ' - The Ids are actually in an SQL table FoundDocIds.
-    ' - *** At present this is a permanent table with no key. A heap. 
-    ' - *** This is undesirable but allowed for the prototype.
-    ' - *** It would allow cross-talk between users on a multi-user system!
-    'Possible solutions:
-    ' - *** Add a "SessionId" column and use this to distingish between users. 
-    ' - *** Use a "Temporary Table" (in TempDB) which naturally belongs to the session (connection). Preferred solution.
+    ' - *** In R0-1 this was a permanent table with no key. A heap. 
+    ' - *** It allowed cross-talk between users on a multi-user system!
+    ' - *** The "Temporary Table" (in TempDB) preferred solution, did not work.
+    ' - *** Solution used:Add a "SessionId" column and use this to distingish between users. 
     Const MODNAME As String = "FoundDocs"
     Friend mRoutineName As String = ""      'To hold the name of the routine which generates an exception
 
@@ -140,7 +138,9 @@ Public Class FoundDocs
         For i = 0 To ex.Errors.Count - 1
             Console.WriteLine("Index#: " & i.ToString & vbNewLine & "Error: " & ex.Errors(i).ToString & vbNewLine)
         Next
-        MsgBox("SQL Exception trapped - Look at the console", MsgBoxStyle.Critical, "Bessie SQL")
+
+        'MsgBox("SQL Exception trapped - Look at the console", MsgBoxStyle.Critical, "Bessie SQL")
+        Throw New ApplicationException("SQL Exception - Look at the console:", ex)
     End Sub
 
     Private Sub handleGeneralException(ex As Exception)
@@ -150,8 +150,8 @@ Public Class FoundDocs
         Console.WriteLine("Error: " & ex.Message.ToString & " is not a valid column" & vbNewLine)
         Console.WriteLine(ex.ToString & vbNewLine)
 
-        MsgBox("Non-SQL exception - Look at the console", MsgBoxStyle.Critical, "Bessie SQL")
-
+        'MsgBox("Non-SQL exception - Look at the console", MsgBoxStyle.Critical, "Bessie SQL")
+        Throw New ApplicationException("Non-SQL Exception - Look at the console:", ex)
     End Sub
 
 End Class

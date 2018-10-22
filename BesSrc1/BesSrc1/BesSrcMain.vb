@@ -20,7 +20,8 @@
         'Show the Main screen
         frmMain.ShowDialog()
 
-        'Clean up
+        'Clean up -  Not executed if application closed by closing the Console!
+        fdocs.Clear()                                   'Empty the cache of found docs. 
         frmMain.Dispose()
     End Sub
 

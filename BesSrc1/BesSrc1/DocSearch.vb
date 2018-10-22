@@ -44,10 +44,11 @@ Public Class DocSearch
                 queryText = queryText & " dr.Title "
                 queryText = queryText & " FROM dbo.DocumentRow as dr"
                 queryText = queryText & " WHERE dr.DocumentId in (  "
-                queryText = queryText & " SELECT fnd.DocumentId FROM dbo.FoundDocIds as fnd ) "
+                queryText = queryText & " SELECT fnd.DocumentId FROM dbo.FoundDocIds as fnd"
+                queryText = queryText & " WHERE fnd.WndwHndl = @WndwHndl ) "
 
                 Using sqlCommand As New SqlCommand(queryText, sqlConnection)
-
+                    sqlCommand.Parameters.AddWithValue("@WndwHndl", gWndHndl)
 
                     Using reader = sqlCommand.ExecuteReader()
 
@@ -564,7 +565,8 @@ Public Class DocSearch
         For i = 0 To ex.Errors.Count - 1
             Console.WriteLine("Index#: " & i.ToString & vbNewLine & "Error: " & ex.Errors(i).ToString & vbNewLine)
         Next
-        MsgBox("SQL Exception trapped - Look at the console", MsgBoxStyle.Critical, "Bessie SQL")
+
+        Throw New ApplicationException("SQL Exception - Look at the console:", ex)
     End Sub
 
     Private Sub handleGeneralException(ex As Exception)
@@ -574,8 +576,7 @@ Public Class DocSearch
         Console.WriteLine("Error: " & ex.Message.ToString & " is not a valid column" & vbNewLine)
         Console.WriteLine(ex.ToString & vbNewLine)
 
-        MsgBox("Non-SQL exception - Look at the console", MsgBoxStyle.Critical, "Bessie")
-
+        Throw New ApplicationException("Non-SQL Exception - Look at the console:", ex)
     End Sub
 
 End Class
