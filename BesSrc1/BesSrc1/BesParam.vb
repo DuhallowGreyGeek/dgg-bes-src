@@ -95,6 +95,7 @@ Public Class BesParam
             End Using
         Catch exp As Exception
             Console.WriteLine(THISCLASS & "." & METHOD & " The process failed: {0}", e.ToString())
+            'Throw New ApplicationException("Xml Exception in param file - Look at the console:", exp)
         End Try
 
     End Sub
