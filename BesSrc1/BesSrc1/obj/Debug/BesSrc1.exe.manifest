@@ -55,14 +55,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BesSrc1.exe" size="517120">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BesSrc1.exe" size="517632">
       <assemblyIdentity name="BesSrc1" version="0.2.1.1" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>nYtYypHTX7lYajh6qM9AL/btWBMe39YodHmJCVIaJuI=</dsig:DigestValue>
+        <dsig:DigestValue>xSgB+dkTEFruzSQElaJ8eLINqIqBTKW+acoibVtYlgI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -87,13 +87,13 @@
       <dsig:DigestValue>HlNg9yNm3FuOpK52PM6JjmMcUtrp/5pEa1TB+NXU5Y0=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="BesSrc1.exe.config" size="186">
+  <file name="BesSrc1.exe.config" size="1062">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>h0UeIdteCM29dGVw07LmHp593fPbh0IN11GyN3f2uRA=</dsig:DigestValue>
+      <dsig:DigestValue>vJq/Iuos9HKNwqwsvbti6BHpYptwLze9m62F0kZrZvA=</dsig:DigestValue>
     </hash>
   </file>
   <file name="duhallow_logo_55H_3.ico" size="57319">

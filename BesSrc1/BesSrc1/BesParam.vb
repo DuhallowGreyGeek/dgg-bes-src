@@ -29,7 +29,9 @@ Public Class BesParam
         settings.IgnoreComments = True
 
         'Dim path As String = "C:\Users\Tom\Documents\Bunter_20170601\BunterApp\BuntWun\BuntParms.xml"
-        Dim path As String = "BesParms.xml"        'Use the parameters file with the executable
+        'Dim path As String = "BesParms.xml"        'Use the parameters file with the executable
+        Dim path = My.Settings.ParmsPath & My.Settings.ParmsFname 'Use the parameters file from "settings"
+
         Dim reader As XmlReader = XmlReader.Create(path, settings)
 
         Try
